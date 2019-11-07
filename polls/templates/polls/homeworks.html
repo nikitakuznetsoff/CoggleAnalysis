@@ -9,24 +9,28 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{% url 'index' %}">Coggle Analysis</a>
+        <a class="navbar-brand ml-4" href="{% url 'index' %}">Coggle Analysis</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
+                {% if not user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'index' %}">Главная<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login' %}">Авторизация</a>
-                </li>
-                {% if user.is_authenticated %}
-                <li class="nav-item">
-                   <a class="nav-link" href="{% url 'logout' %}">Выйти</a>
+                   <a class="nav-link" href="{% url 'login' %}">Авторизация</a>
                 </li>
                 {% endif %}
             </ul>
+            <ul class="navbar-nav ml-auto mr-4">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{ user }}
+                </a>
+              <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{% url 'logout' %}">Выйти</a>
+              </div>
+            </li>
+          </ul>
         </div>
     </nav>
 
@@ -43,7 +47,7 @@
 
         <div class="row justify-content-center mb-3">
             <div class="btn-group mx-3" role="group">
-                <a class="btn btn-outline-success" href="{% url 'homework_add' task.pk %}">Добавить работу</a>
+              <!--  <a class="btn btn-outline-success" href="{% url 'homework_add' task.pk %}">Добавить работу</a> -->
                 <a class="btn btn-outline-danger" href="{% url 'homework_delete' task.pk%}">Удалить работу</a>
             </div>
         </div>
@@ -51,8 +55,8 @@
         <div class="list-group mb-5">
             <div class="row mb-3">
                 <div class="col text-center">Имя ученика</div>
-                <div class="col text-center">Структурное сходство</div>
-                <div class="col text-center">Плагиат в тексте</div>
+                <div class="col text-center">Оценка структурного сходства</div>
+                <div class="col text-center">Оценка сходства текстового содержания</div>
             </div>
         {% for homework in task.homework_set.all %}
              <a href="{{ homework.pk }}" class="list-group-item list-group-item-action align-items-center">
@@ -61,14 +65,48 @@
                          {{ homework.name }}
                      </div>
                      <div class="col text-center">
-                         <span class="badge badge-secondary">
-                             {{ homework.similarity }} %
-                         </span>
+                         {% if homework.similarity >= 70 %}
+                             <span class="badge badge-success">
+                                 {{ homework.similarity }} %
+                             </span>
+                         {% endif %}
+                         {% if homework.similarity >= 50 and homework.similarity < 70 %}
+                             <span class="badge badge-secondary">
+                                 {{ homework.similarity }} %
+                             </span>
+                         {% endif %}
+                         {% if homework.similarity >= 25 and homework.similarity < 50 %}
+                             <span class="badge badge-warning">
+                                 {{ homework.similarity }} %
+                             </span>
+                         {% endif %}
+                         {% if homework.similarity < 25 %}
+                             <span class="badge badge-danger">
+                                 {{ homework.similarity }} %
+                             </span>
+                         {% endif %}
                      </div>
                      <div class="col text-center">
-                         <span class="badge badge-secondary">
-                             {{ homework.plagiarism }} %
-                         </span>
+                         {% if homework.plagiarism >= 70 %}
+                             <span class="badge badge-success">
+                                 {{ homework.plagiarism }} %
+                             </span>
+                         {% endif %}
+                         {% if homework.plagiarism >= 50 and homework.plagiarism < 70 %}
+                             <span class="badge badge-secondary">
+                                 {{ homework.plagiarism }} %
+                             </span>
+                         {% endif %}
+                         {% if homework.plagiarism >= 25 and homework.plagiarism < 50 %}
+                             <span class="badge badge-warning">
+                                 {{ homework.plagiarism }} %
+                             </span>
+                         {% endif %}
+                         {% if homework.plagiarism < 25 %}
+                             <span class="badge badge-danger">
+                                 {{ homework.plagiarism }} %
+                             </span>
+                         {% endif %}
                      </div>
                  </div>
              </a>

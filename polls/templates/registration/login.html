@@ -8,24 +8,30 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{% url 'index' %}">Coggle Analysis</a>
+        <a class="navbar-brand ml-4" href="{% url 'index' %}">Coggle Analysis</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
+                {% if not user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'index' %}">Главная<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'login' %}">Авторизация</a>
-                </li>
-                {% if user.is_authenticated %}
-                <li class="nav-item">
-                   <a class="nav-link" href="{% url 'logout' %}">Выйти</a>
+                   <a class="nav-link" href="{% url 'login' %}">Авторизация</a>
                 </li>
                 {% endif %}
             </ul>
+            {% if user.is_authenticated %}
+            <ul class="navbar-nav ml-auto mr-4">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ user }}
+                    </a>
+                  <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="{% url 'logout' %}">Выйти</a>
+                  </div>
+                </li>
+            </ul>
+            {% endif %}
         </div>
     </nav>
 
@@ -45,25 +51,39 @@
             <button type="submit" value="login" class="btn btn-primary btn-block">Войти</button>
             <input type="hidden" name="next" value="{% url 'index' %}">
             <br>
-            <a href="{% url 'password_reset' %}">Забыли пароль?</a>
-            <br>
+            <div class="row justify-content-center">
+                <a href="{% url 'password_reset' %}">Забыли пароль?</a>
+            </div>
 
+            <!--
             <a href="{% url 'password_change' %}">password_change</a>
             <a href="../password_change/done">password_change_done</a>
             <a href="../password_reset/">password_reset</a>
             <a href="../password_reset/done/">password_reset_done</a>
             <a href="../">password_reset_confirm</a>
             <a href="../reset/done/">password_reset_complete</a>
-
+            -->
+            <br>
             {% if form.errors %}
-                <p>Пользователь не найден. Попробуйте еще раз.</p>
+            <div class="row justify-content-center">
+                <p>Пользователь не найден, попробуйте еще раз.</p>
+            </div>
+            <div class="row justify-content-center">
+                <p></p>
+            </div>
+
             {% endif %}
 
             {% if next %}
                 {% if user.is_authenticated %}
-                    <p>У вас нет доступа к этой странице. Пожалуйста, авторизируйтесь.</p>
+                    <div class="row justify-content-center">
+                        <p>У вас нет доступа к этой странице.</p>
+                    </div>
+
                 {% else %}
-                    <p>Пожалуйста, авторизируйтесь для просмотра этой страницы.</p>
+                    <div class="row justify-content-center">
+                        <p>Пожалуйста, авторизируйтесь для просмотра этой страницы.</p>
+                    </div>
                 {% endif %}
             {% endif %}
 

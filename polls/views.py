@@ -1,6 +1,6 @@
 import json
-
 import requests
+
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
@@ -10,7 +10,7 @@ from django.views import generic
 from openpyxl import load_workbook
 from requests.auth import HTTPBasicAuth
 
-from modules import checks, coggle, readers, analysis
+from modules import checks, coggle, readers, analysis, text_search
 from .models import UserData, Task, Homework
 
 
@@ -93,39 +93,47 @@ def add_confirm(request):
         title_new = request.POST['title']
         about_new = request.POST['about']
         file = request.FILES['file_table']
-        table = request.POST['table']
+        table_name = request.POST['table']
+
         true_work = request.POST['true_work']
         true_work_link = readers.link_to_id(true_work)
+
+        keys = request.POST['keys']
         names_cell = request.POST['names']
         links_cell = request.POST['links']
 
         wb = load_workbook(filename=file)
-
     except Exception:
         return render(request, 'polls/actions/add_error.html')
     else:
         # Проверка наличия заданной таблицы в Exel файле
-        if table != '':
-            if not checks.check_correct_tablename(wb, table):
+        if table_name != '':
+            if not checks.check_correct_tablename(wb, table_name):
                 return render(request, 'polls/actions/add_error.html')
 
         # Проверка формата заданных ячеек
         if not checks.check_correct_cellname(names_cell) or not checks.check_correct_cellname(links_cell):
             return render(request, 'polls/actions/add_error.html')
 
-        # Проверка наличия токена для анализа
-        if coggle.coggle_user.access_token == "":
-            coggle.coggle_user.authorization()
+        try:
+            # Проверка наличия токена для анализа
+            if coggle.coggle_user.access_token == "":
+                coggle.coggle_user.authorization()
+                return render(request, 'polls/actions/add.html')
+        except Exception:
             return render(request, 'polls/actions/add_error.html')
 
         # Создание объекта домашнего задания для текущего пользователя
         curr_data = UserData.objects.get(user=request.user)
         curr_task = curr_data.task_set.create(title=title_new, about=about_new)
 
+        # Создание массива ключевых значений
+        arr_keys = keys.split(",")
+
         # Загрузка нужной таблицы
         wb = load_workbook(file)
-        if table != '':
-            sheet = wb[table]
+        if table_name != '':
+            sheet = wb[table_name]
         else:
             sheet = wb[wb.sheetnames[0]]
 
@@ -135,16 +143,33 @@ def add_confirm(request):
         # Получение массива коэффициентов структурного сходства
         arr_with_coef = analysis.mindmap_analysis(arr[1], true_work_link)
 
-        arr_of_text = analysis.plagiarism_rating(arr[1])
+        # Массив текстов каждой интеллект карты
+        arr_text = analysis.take_text(arr[1])
+
+        # Массив с вычисленными сходствами текстовых составляющих
+        if len(arr_keys) > 0:
+            sim_arr = text_search.initialization(arr_keys, arr_text)
+        else:
+            sim_arr = [0] * len(arr_keys)
+
 
         # Создание работ
         for i in range(0, len(arr[0])):
+            # Проверка на считывание лишней информации
+            if arr[0][i] is None:
+                break
             if true_work_link == "":
-                coef = round(arr_with_coef[1][i] * 100, 2)
+                coef = round(arr_with_coef[1][i] * 100)
             else:
-                coef = round(arr_with_coef[i] * 100, 2)
-            curr_task.homework_set.create(name=arr[0][i], link=arr[1][i], similarity=coef,
-                                          plagiarism=arr_of_text[i][0])
+                coef = round(arr_with_coef[i] * 100)
+
+            if len(sim_arr) > 0:
+                sim = round(sim_arr[i] * 100)
+            else:
+                sim = -1
+
+            curr_task.homework_set.create(name=arr[0][i], link=arr[1][i],
+                                          similarity=coef, plagiarism=sim)
 
         return HttpResponseRedirect(reverse('add_done'))
 

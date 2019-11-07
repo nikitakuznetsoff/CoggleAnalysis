@@ -55,8 +55,8 @@ def max_count_isom_nodes(G, H):
 
 # Поиск максимального общего дерева
 def max_isom_substree(G, H):
-    #gm_one = isomorphism.DiGraphMatcher(G, H)
-    #gm_two = isomorphism.DiGraphMatcher(H, G)
+    # gm_one = isomorphism.DiGraphMatcher(G, H)
+    # gm_two = isomorphism.DiGraphMatcher(H, G)
     nm = isomorphism.categorical_node_match('text', '')
     gm_one = isomorphism.DiGraphMatcher(G, H, node_match=nm)
     gm_two = isomorphism.DiGraphMatcher(H, G, node_match=nm)
@@ -100,7 +100,7 @@ def max_mwm_rec(arr, nodes, ni, nj, sum, arr_summ):
     nodes[nj] = True
     for i in range(ni + 1, len(arr)):
         for j in range(len(arr[0])):
-            if (nodes[j] != True) & (arr[i][j] != 0):
+            if (nodes[j] != True) and (arr[i][j] != 0):
                 sum += arr[i][j]
                 max_mwm_rec(arr, nodes, i, j, sum, arr_summ)
     arr_summ.append(sum)
@@ -110,6 +110,7 @@ def max_mwm_rec(arr, nodes, ni, nj, sum, arr_summ):
 def max_common_substree_rooted(G, H):
     G_graph = gf.transform_into_graph(G)
     H_graph = gf.transform_into_graph(H)
+
     matrix = []
     i = 0
     for G_node in G_graph.neighbors(G[0]['_id']):
@@ -119,12 +120,11 @@ def max_common_substree_rooted(G, H):
             h = subtree_by_node(H_graph, H_node)
             if max_isom_substree(g, h) == af.count_nodes(g):
                 matrix[i].append(af.count_nodes(g))
-            if max_isom_substree(g, h) == af.count_nodes(h):
+            elif max_isom_substree(g, h) == af.count_nodes(h):
                 matrix[i].append(af.count_nodes(h))
-            if max_isom_substree(g, h) == 0:
+            else:
                 matrix[i].append(max_common_substree_rooted_rec(
-                    G_graph, H_graph, G_node, H_node, G[0]['_id'], H[0]['_id'])
-                )
+                    G_graph, H_graph, G_node, H_node, G[0]['_id'], H[0]['_id']))
         i += 1
     return af.similarity_sub_algo(max_mwm(matrix), G_graph, H_graph)
 

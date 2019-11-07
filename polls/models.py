@@ -24,9 +24,8 @@ class Task(models.Model):
 class Homework(models.Model):
     name = models.CharField(max_length=100)
     link = models.CharField(max_length=100)
-    similarity = models.FloatField(default=-1)
-    plagiarism = models.FloatField(default=-1)
-
+    similarity = models.IntegerField(default=0)
+    plagiarism = models.IntegerField(default=0)
 
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
 

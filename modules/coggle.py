@@ -24,7 +24,7 @@ class Coggle:
 
 
     def authorization_token(self):
-        code = request.GET['code']
+        code = requests.get('code')
         params = {"code": code, "grant_type": "authorization_code", "redirect_uri": self.redirect_uri}
         resp1 = requests.post(self.url_base + "token", auth=HTTPBasicAuth(client_id, self.client_secret), json=params)
         information_auth = json.loads(resp1.text)

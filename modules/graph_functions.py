@@ -84,6 +84,11 @@ def get_text(graph):
     nodes = list(graph.nodes())
 
     for node in nodes:
-        arr += " " + graph.node[node]['text']
+        str = graph.node[node]['text']
+        if str.find("![") != -1:
+            index = str.find("![")
+            arr += " " + str[0:index]
+        else:
+            arr += " " + str
 
     return arr
