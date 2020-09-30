@@ -34,6 +34,7 @@
   <component name="ChangeListManager">
     <list default="true" id="165fd791-ffc8-4ce5-b9a9-e5ad2d057dbf" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/polls/templates/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/polls/templates/polls/actions/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/polls/templates/polls/actions/add.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/polls/templates/polls/actions/change.html" beforeDir="false" afterPath="$PROJECT_DIR$/polls/templates/polls/actions/change.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/polls/templates/polls/actions/change_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/polls/templates/polls/actions/change_form.html" afterDir="false" />
@@ -48,7 +49,11 @@
       <change beforePath="$PROJECT_DIR$/polls/templates/polls/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/polls/templates/polls/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/polls/templates/polls/task.html" beforeDir="false" afterPath="$PROJECT_DIR$/polls/templates/polls/task.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/polls/templates/registration/logged_out.html" beforeDir="false" afterPath="$PROJECT_DIR$/polls/templates/registration/logged_out.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/polls/templates/registration/password_reset_done.html" beforeDir="false" afterPath="$PROJECT_DIR$/polls/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/templates/registration/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/polls/templates/registration/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/templates/registration/password_change_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/polls/templates/registration/password_change_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/templates/registration/password_reset_complete.html" beforeDir="false" afterPath="$PROJECT_DIR$/polls/templates/registration/password_reset_complete.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/templates/registration/password_reset_confirm.html" beforeDir="false" afterPath="$PROJECT_DIR$/polls/templates/registration/password_reset_confirm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/templates/registration/password_reset_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/polls/templates/registration/password_reset_form.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,8 +73,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -288,7 +293,7 @@
       <workItem from="1600200725778" duration="472000" />
       <workItem from="1600864314510" duration="5000" />
       <workItem from="1601400988027" duration="3876000" />
-      <workItem from="1601466730512" duration="4597000" />
+      <workItem from="1601466730512" duration="5380000" />
     </task>
     <servers />
   </component>
@@ -334,26 +339,30 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="517" y="248" width="562" height="408" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1601471660289">
+      <screen x="64" y="27" width="1472" height="837" />
+    </state>
+    <state x="517" y="248" width="562" height="408" key="#com.intellij.fileTypes.FileTypeChooser/64.27.1472.837@64.27.1472.837" timestamp="1601471660289" />
     <state x="536" y="180" width="524" height="514" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1601468294962">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
     <state x="536" y="180" width="524" height="514" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/64.27.1472.837@64.27.1472.837" timestamp="1601468294962" />
-    <state width="1426" height="294" key="GridCell.Tab.0.bottom" timestamp="1601470575733">
+    <state width="1426" height="294" key="GridCell.Tab.0.bottom" timestamp="1601471500484">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
-    <state width="1426" height="294" key="GridCell.Tab.0.bottom/64.27.1472.837@64.27.1472.837" timestamp="1601470575733" />
-    <state width="1426" height="294" key="GridCell.Tab.0.center" timestamp="1601470575731">
+    <state width="1426" height="294" key="GridCell.Tab.0.bottom/64.27.1472.837@64.27.1472.837" timestamp="1601471500484" />
+    <state width="1426" height="294" key="GridCell.Tab.0.center" timestamp="1601471500481">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
-    <state width="1426" height="294" key="GridCell.Tab.0.center/64.27.1472.837@64.27.1472.837" timestamp="1601470575731" />
-    <state width="1426" height="294" key="GridCell.Tab.0.left" timestamp="1601470575730">
+    <state width="1426" height="294" key="GridCell.Tab.0.center/64.27.1472.837@64.27.1472.837" timestamp="1601471500481" />
+    <state width="1426" height="294" key="GridCell.Tab.0.left" timestamp="1601471500480">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
-    <state width="1426" height="294" key="GridCell.Tab.0.left/64.27.1472.837@64.27.1472.837" timestamp="1601470575730" />
-    <state width="1426" height="294" key="GridCell.Tab.0.right" timestamp="1601470575732">
+    <state width="1426" height="294" key="GridCell.Tab.0.left/64.27.1472.837@64.27.1472.837" timestamp="1601471500480" />
+    <state width="1426" height="294" key="GridCell.Tab.0.right" timestamp="1601471500483">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
-    <state width="1426" height="294" key="GridCell.Tab.0.right/64.27.1472.837@64.27.1472.837" timestamp="1601470575732" />
+    <state width="1426" height="294" key="GridCell.Tab.0.right/64.27.1472.837@64.27.1472.837" timestamp="1601471500483" />
     <state x="520" y="112" width="1016" height="742" key="SettingsEditor" timestamp="1599670195333">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
@@ -362,10 +371,10 @@
       <screen x="64" y="27" width="1472" height="837" />
     </state>
     <state x="584" y="361" width="432" height="182" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/64.27.1472.837@64.27.1472.837" timestamp="1601470716417" />
-    <state x="489" y="51" width="621" height="783" key="find.popup" timestamp="1601468540367">
+    <state x="489" y="51" width="621" height="783" key="find.popup" timestamp="1601472111939">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
-    <state x="489" y="51" width="621" height="783" key="find.popup/64.27.1472.837@64.27.1472.837" timestamp="1601468540367" />
+    <state x="489" y="51" width="621" height="783" key="find.popup/64.27.1472.837@64.27.1472.837" timestamp="1601472111939" />
     <state x="634" y="231" width="327" height="441" key="refactoring.ChangeSignatureDialog" timestamp="1601405973901">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
