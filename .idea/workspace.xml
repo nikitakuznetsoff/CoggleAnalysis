@@ -1,10 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:dependabot" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:dependabot" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:pip" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="165fd791-ffc8-4ce5-b9a9-e5ad2d057dbf" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/mysite.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mysite.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/algorithm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/templates/polls/actions/add_done.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/templates/polls/actions/add_error.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/templates/polls/actions/change_done.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/templates/polls/actions/change_error.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/templates/polls/actions/delete_done.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/templates/polls/actions/delete_error.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/templates/registration/password_reset_done.html" beforeDir="false" afterPath="$PROJECT_DIR$/polls/templates/registration/password_reset_done.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/views.py" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,6 +77,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="JupyterTrust" id="95d2201c-c50a-483c-9ec5-9393334618e1" />
   <component name="ProjectId" id="1TIQX3wwocvw8r5Hm7nzWFWuLwn" />
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -48,8 +95,13 @@
       </profile-state>
     </entry>
   </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SearchEverywhereHistoryKey" value=":&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -64,19 +116,7 @@
       <recent name="C:\UniversityProjects\Coursework\mysite\polls\templates\registration" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager" selected="Django server.mysite">
+  <component name="RunManager" selected="Django Server.mysite">
     <configuration name="Test: polls.templates.polls.index.html" type="DjangoTestsConfigurationType" temporary="true">
       <module name="mysite" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -208,11 +248,11 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Django server.mysite" />
-      <item itemvalue="Django tests.Test: polls.templates.registration.password_change.html" />
+      <item itemvalue="Django Server.mysite" />
       <item itemvalue="Django tests.Test: polls.templates.polls.index.html" />
-      <item itemvalue="Python.models" />
+      <item itemvalue="Django tests.Test: polls.templates.registration.password_change.html" />
       <item itemvalue="Python.indexer" />
+      <item itemvalue="Python.models" />
       <item itemvalue="Python.text_search" />
     </list>
     <recent_temporary>
@@ -225,6 +265,7 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -238,6 +279,12 @@
       <workItem from="1573145169020" duration="5347000" />
       <workItem from="1578656294764" duration="1041000" />
       <workItem from="1579093519145" duration="2006000" />
+      <workItem from="1599587463799" duration="638000" />
+      <workItem from="1599669791706" duration="3788000" />
+      <workItem from="1600200725778" duration="472000" />
+      <workItem from="1600864314510" duration="5000" />
+      <workItem from="1601400988027" duration="3876000" />
+      <workItem from="1601466730512" duration="1882000" />
     </task>
     <servers />
   </component>
@@ -268,19 +315,52 @@
     </todo-panel>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="536" y="180" width="524" height="514" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1601468294962">
+      <screen x="64" y="27" width="1472" height="837" />
+    </state>
+    <state x="536" y="180" width="524" height="514" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/64.27.1472.837@64.27.1472.837" timestamp="1601468294962" />
+    <state width="1426" height="204" key="GridCell.Tab.0.bottom" timestamp="1601463349322">
+      <screen x="64" y="27" width="1472" height="837" />
+    </state>
+    <state width="1426" height="204" key="GridCell.Tab.0.bottom/64.27.1472.837@64.27.1472.837" timestamp="1601463349322" />
+    <state width="1426" height="204" key="GridCell.Tab.0.center" timestamp="1601463349322">
+      <screen x="64" y="27" width="1472" height="837" />
+    </state>
+    <state width="1426" height="204" key="GridCell.Tab.0.center/64.27.1472.837@64.27.1472.837" timestamp="1601463349322" />
+    <state width="1426" height="204" key="GridCell.Tab.0.left" timestamp="1601463349322">
+      <screen x="64" y="27" width="1472" height="837" />
+    </state>
+    <state width="1426" height="204" key="GridCell.Tab.0.left/64.27.1472.837@64.27.1472.837" timestamp="1601463349322" />
+    <state width="1426" height="204" key="GridCell.Tab.0.right" timestamp="1601463349322">
+      <screen x="64" y="27" width="1472" height="837" />
+    </state>
+    <state width="1426" height="204" key="GridCell.Tab.0.right/64.27.1472.837@64.27.1472.837" timestamp="1601463349322" />
+    <state x="520" y="112" width="1016" height="742" key="SettingsEditor" timestamp="1599670195333">
+      <screen x="64" y="27" width="1472" height="837" />
+    </state>
+    <state x="520" y="112" width="1016" height="742" key="SettingsEditor/64.27.1472.837@64.27.1472.837" timestamp="1599670195333" />
+    <state x="489" y="51" width="621" height="783" key="find.popup" timestamp="1601468540367">
+      <screen x="64" y="27" width="1472" height="837" />
+    </state>
+    <state x="489" y="51" width="621" height="783" key="find.popup/64.27.1472.837@64.27.1472.837" timestamp="1601468540367" />
+    <state x="634" y="231" width="327" height="441" key="refactoring.ChangeSignatureDialog" timestamp="1601405973901">
+      <screen x="64" y="27" width="1472" height="837" />
+    </state>
+    <state x="634" y="231" width="327" height="441" key="refactoring.ChangeSignatureDialog/64.27.1472.837@64.27.1472.837" timestamp="1601405973901" />
   </component>
 </project>

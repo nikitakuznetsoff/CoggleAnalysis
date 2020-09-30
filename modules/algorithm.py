@@ -146,7 +146,7 @@ def max_common_substree_rooted_rec(G_graph, H_graph, nG_node, nH_node, root_G, r
     return max_mwm(matrix) + max_count_isom_nodes(root_to_GNode, root_to_HNode)
 
 
-# Алгоритм для ненаправоенных деревьев
+# Алгоритм для ненаправленных деревьев
 def max_common_substree_unrooted(G, H):
     G_graph = gf.transform_into_graph(G)
     H_graph = gf.transform_into_graph(H)

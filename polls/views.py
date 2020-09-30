@@ -34,7 +34,7 @@ class TasksView(LoginRequiredMixin, generic.DetailView):
 
 @login_required(login_url='/accounts/login/')
 def homework_add(request, task_id):
-    context = { "task_id": task_id }
+    context = {'task_id': task_id}
     return render(request, 'polls/homeworks_add.html', context)
 
 
@@ -45,7 +45,11 @@ def homework_add_confirm(request, task_id):
         link = request.POST['link']
         link = readers.link_to_id(link)
     except Exception:
-        return render(request, 'polls/actions/add_error.html')
+        context = {
+            'title': "Добавление работы",
+            'text': "Произошла ошибка при добавлении работы"
+        }
+        return render(request, 'polls/actions/error.html', context)
     else:
         userData = UserData.objects.get(user=request.user)
         task = userData.task_set.get(pk=task_id)
@@ -62,8 +66,10 @@ class HomeworkDelete(LoginRequiredMixin, generic.DetailView):
 def homework_delete_page(request, task_id, homework_id):
     task = Task.objects.get(pk=task_id)
     homework = task.homework_set.get(pk=homework_id)
-    context = { 'task_id': task_id,
-                'homework': homework }
+    context = {
+        'task_id': task_id,
+        'homework': homework
+    }
     return render(request, 'polls/homework_delete_page.html', context)
 
 
@@ -74,13 +80,20 @@ def homework_delete_confirm(request, task_id, homework_id):
     try:
         homework.delete()
     except:
-        context = { 'title': "Удаление работы",
-                    'text': "Произошла ошибка, работы не удалена"}
+        context = {
+            'title': "Удаление работы",
+            'text': "Произошла ошибка, работы не удалена"
+        }
         return render(request, 'polls/actions/error.html', context)
     else:
-        return HttpResponseRedirect(reverse('delete_done'))
+        context = {
+            'title': "Удаление работы",
+            'text': "Работа успешно удалена"
+        }
+        return render(request, 'polls/actions/done.html', context)
 
 ########################
+
 
 class AddView(LoginRequiredMixin, generic.ListView):
     model = UserData
@@ -104,16 +117,28 @@ def add_confirm(request):
 
         wb = load_workbook(filename=file)
     except Exception:
-        return render(request, 'polls/actions/add_error.html')
+        context = {
+            'title': "Создание задания",
+            'text': "Произошла ошибка при создании задания"
+        }
+        return render(request, 'polls/actions/error.html', context)
     else:
-        # Проверка наличия заданной таблицы в Exel файле
+        # Проверка наличия заданной таблицы в Excel файле
         if table_name != '':
             if not checks.check_correct_tablename(wb, table_name):
-                return render(request, 'polls/actions/add_error.html')
+                context = {
+                    'title': "Создание задания",
+                    'text': "Произошла ошибка при создании задания"
+                }
+                return render(request, 'polls/actions/error.html', context)
 
         # Проверка формата заданных ячеек
         if not checks.check_correct_cellname(names_cell) or not checks.check_correct_cellname(links_cell):
-            return render(request, 'polls/actions/add_error.html')
+            context = {
+                'title': "Создание задания",
+                'text': "Произошла ошибка при создании задания"
+            }
+            return render(request, 'polls/actions/error.html', context)
 
         try:
             # Проверка наличия токена для анализа
@@ -121,7 +146,11 @@ def add_confirm(request):
                 coggle.coggle_user.authorization()
                 return render(request, 'polls/actions/add.html')
         except Exception:
-            return render(request, 'polls/actions/add_error.html')
+            context = {
+                'title': "Создание задания",
+                'text': "Произошла ошибка при создании задания"
+            }
+            return render(request, 'polls/actions/error.html', context)
 
         # Создание объекта домашнего задания для текущего пользователя
         curr_data = UserData.objects.get(user=request.user)
@@ -152,7 +181,6 @@ def add_confirm(request):
         else:
             sim_arr = [0] * len(arr_keys)
 
-
         # Создание работ
         for i in range(0, len(arr[0])):
             # Проверка на считывание лишней информации
@@ -171,19 +199,19 @@ def add_confirm(request):
             curr_task.homework_set.create(name=arr[0][i], link=arr[1][i],
                                           similarity=coef, plagiarism=sim)
 
-        return HttpResponseRedirect(reverse('add_done'))
+        context = {
+            'title': "Создание задания",
+            'text': "Задание успешно добавлено"
+        }
+        return render(request, 'polls/actions/done.html', context)
 
-
-@login_required(login_url='/accounts/login/')
-def add_done(request):
-    return render(request, 'polls/actions/add_done.html')
 
 ########################
 
 @login_required(login_url='/accounts/login/')
 def change(request):
-    userData = UserData.objects.get(user=request.user)
-    context = {'userData': userData}
+    user_data = UserData.objects.get(user=request.user)
+    context = {'userData': user_data}
     return render(request, 'polls/actions/change.html', context)
 
 
@@ -202,32 +230,38 @@ def change_task_confirm(request, task_id):
         title_new = request.POST['title']
         about_new = request.POST['about']
     except:
-        return render(request, 'polls/actions/change_error.html')
+        context = {
+            'title': "Изменение описания",
+            'text': "Произошла ошибка, изменения не сохранены"
+        }
+        return render(request, 'polls/actions/error.html', context)
     else:
         task.title = title_new
         task.about = about_new
         task.save()
-        return HttpResponseRedirect(reverse('change_done'))
+        context = {
+            'title': "Изменение описания",
+            'text': "Изменения успешно сохранены"
+        }
+        return render(request, 'polls/actions/done.html', context)
 
-
-@login_required(login_url='/accounts/login/')
-def change_done(request):
-    return render(request, 'polls/actions/change_done.html')
 
 ########################
 
 @login_required(login_url='/accounts/login/')
 def delete(request):
-    userData = UserData.objects.get(user=request.user)
-    context = {'userData': userData}
+    user_data = UserData.objects.get(user=request.user)
+    context = {'userData': user_data}
     return render(request, 'polls/actions/delete.html', context)
 
 
 @login_required(login_url='/accounts/login/')
 def delete_task(request, task_id):
     task = Task.objects.get(pk=task_id)
-    context = {'task': task,
-               'task_id' : task_id}
+    context = {
+        'task': task,
+        'task_id': task_id
+    }
     return render(request, 'polls/actions/delete_form.html', context)
 
 
@@ -237,14 +271,18 @@ def delete_task_confirm(request, task_id):
     try:
         task.delete()
     except:
-        return render(request, 'polls/actions/change_error.html')
+        context = {
+            'title': "Удаление задание",
+            'text': "Произошла ошибка при удалении задания"
+        }
+        return render(request, 'polls/actions/error.html', context)
     else:
-        return HttpResponseRedirect(reverse('delete_done'))
+        context = {
+            'title': "Удаление задания",
+            'text': "Задание успешно удалено"
+        }
+        return render(request, 'polls/actions/done.html', context)
 
-
-@login_required(login_url='/accounts/login/')
-def delete_done(request):
-    return render(request, 'polls/actions/delete_done.html')
 
 ########################
 
@@ -254,8 +292,10 @@ def coggle_auth(request):
     try:
         code = request.GET['code']
     except Exception:
-        context = { 'title': "Ошибка токена",
-                    'text': "Ключ авторизации не был получен"}
+        context = {
+            'title': "Ошибка токена",
+            'text': "Ключ авторизации не был получен"
+        }
         return render(request, 'polls/actions/error.html', context)
     else:
         params = {"code": code, "grant_type": "authorization_code", "redirect_uri": coggle.redirect_uri}
@@ -263,6 +303,8 @@ def coggle_auth(request):
         information_auth = json.loads(resp1.text)
         coggle.coggle_user.access_token = information_auth["access_token"]
 
-        context = {'title': "Получение токена",
-                   'text': "Ключ авторизации был успешно получен"}
+        context = {
+            'title': "Получение токена",
+            'text': "Ключ авторизации был успешно получен"
+        }
     return render(request, 'polls/actions/done.html', context)

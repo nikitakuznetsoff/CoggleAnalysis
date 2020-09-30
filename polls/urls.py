@@ -21,15 +21,12 @@ urlpatterns = [
 
     path('add/', views.AddView.as_view(), name='add'),
     path('add/confirm', views.add_confirm, name='add_confirm'),
-    path('add/done', views.add_done, name='add_done'),
 
     path('change/', views.change, name='change'),
     path('change/<int:task_id>/', views.change_task, name='change_task'),
     path('change/<int:task_id>/confirm', views.change_task_confirm, name='change_task_confirm'),
-    path('change/done', views.change_done, name='change_done'),
 
     path('delete/', views.delete, name='delete'),
     path('delete/<int:task_id>/', views.delete_task, name='delete_task'),
     path('delete/<int:task_id>/confirm', views.delete_task_confirm, name='delete_task_confirm'),
-    path('delete/done', views.delete_done, name='delete_done'),
 ]
