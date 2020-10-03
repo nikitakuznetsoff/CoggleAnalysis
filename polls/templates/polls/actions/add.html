@@ -1,15 +1,16 @@
 {% extends "base.html" %}
 
-{% block site_title %}Добавление{% endblock %}
+{% block site_title %}Создание{% endblock %}
+
+{% block page_title %}Создание нового задания{% endblock %}
 
 {% block content %}
     <div class="container mt-3">
-        <p class="text-center font-weight-bolder mt-4" >Добавление нового задания</p>
 
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{% url 'index' %}">Главная</a></li>
-                <li class="breadcrumb-item active">Добавление</li>
+                <li class="breadcrumb-item active">Создание</li>
             </ol>
         </nav>
 

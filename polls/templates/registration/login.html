@@ -1,60 +1,65 @@
-{% extends "base.html" %}
+{% extends 'registration/base_reg.html' %}
 
 {% block site_title %}Авторизация{% endblock %}
 
 {% block content %}
-    <div class="container mx-auto mt-5" style="width: 350px">
-        <p class="text-center font-weight-bolder mt-4" >Авторизация</p>
-        <form method="post" action="{% url 'login' %}">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="exampleInputEmail1">Имя пользователя</label>
-                <input type="text" class="form-control" id="exampleInputEmail1"  placeholder="Введите логин" name="username">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">Пароль</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Введите пароль" name="password">
-            </div>
-
-            <button type="submit" value="login" class="btn btn-primary btn-block">Войти</button>
-            <input type="hidden" name="next" value="{% url 'index' %}">
-            <br>
-            <div class="row justify-content-center">
-                <a href="{% url 'password_reset' %}">Забыли пароль?</a>
-            </div>
-
-            <!--
-            <a href="{% url 'password_change' %}">password_change</a>
-            <a href="../password_change/done">password_change_done</a>
-            <a href="../password_reset/">password_reset</a>
-            <a href="../password_reset/done/">password_reset_done</a>
-            <a href="../">password_reset_confirm</a>
-            <a href="../reset/done/">password_reset_complete</a>
-            -->
-            <br>
-            {% if form.errors %}
-            <div class="row justify-content-center">
-                <p>Пользователь не найден, попробуйте еще раз.</p>
-            </div>
-            <div class="row justify-content-center">
-                <p></p>
-            </div>
-
-            {% endif %}
-
-            {% if next %}
-                {% if user.is_authenticated %}
-                    <div class="row justify-content-center">
-                        <p>У вас нет доступа к этой странице.</p>
+    <div class="row justify-content-center">
+      <div class="col-xl-10 col-lg-12 col-md-9">
+        <div class="card o-hidden border-0 shadow-lg my-5">
+          <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+              <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+              <div class="col-lg-6">
+                <div class="p-5">
+                  <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4">Добро пожаловать!</h1>
+                  </div>
+                  <form class="user" method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <input type="text" class="form-control form-control-user" id="inputEmail"
+                             name="username" aria-describedby="emailHelp" placeholder="Введите e-mail адрес...">
+                    </div>
+                    <div class="form-group">
+                      <input type="password" class="form-control form-control-user" id="inputPassword"
+                             name="password" placeholder="Пароль">
+                    </div>
+                    <div class="form-group">
+                      <div class="custom-control custom-checkbox small">
+                        <input type="checkbox" class="custom-control-input" id="customCheck">
+                        <label class="custom-control-label" for="customCheck">Запомнить меня</label>
+                      </div>
                     </div>
 
-                {% else %}
-                    <div class="row justify-content-center">
-                        <p>Пожалуйста, авторизируйтесь для просмотра этой страницы.</p>
-                    </div>
-                {% endif %}
-            {% endif %}
-
-        </form>
+                    <button type="submit" value="login" class="btn btn-primary btn-user btn-block">Войти</button>
+                    <input type="hidden" name="next" value="{% url 'index' %}">
+                    <br>
+                    {% if form.errors %}
+                      <div class="text-center">
+                        <p class="text-danger small">Пользователь с таким паролем не найден</p>
+                      </div>
+                    {% endif %}
+{#                    <hr>#}
+{#                    <button class="btn btn-google btn-user btn-block btn-hidden">#}
+{#                      <i class="fab fa-google fa-fw"></i> Login with Google#}
+{#                    </button>#}
+{#                    <button class="btn btn-facebook btn-user btn-block">#}
+{#                      <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook#}
+{#                    </button>#}
+                  </form>
+                  <hr>
+                  <div class="text-center">
+                    <a class="small" href="{% url 'password_reset' %}">Забыли пароль?</a>
+                  </div>
+                  <div class="text-center">
+                    <a class="small" href="register.html">Зарегистрироваться!</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 {% endblock %}

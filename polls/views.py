@@ -7,6 +7,9 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.views import generic
+
+import django.contrib.auth.forms as f
+
 from openpyxl import load_workbook
 from requests.auth import HTTPBasicAuth
 
@@ -14,11 +17,18 @@ from modules import checks, coggle, readers, analysis, text_search
 from .models import UserData, Task, Homework
 
 
+def registration(request):
+    return render(request, 'registration/register.html')
+
+
 @login_required(login_url='/accounts/login/')
 def index(request):
     #coggle.coggle_user.authorization()
-    userData = UserData.objects.get(user=request.user)
-    context = {'userData': userData}
+    try:
+        user_data = UserData.objects.get(user=request.user)
+    except UserData.DoesNotExist:
+        user_data = ''
+    context = {'userData': user_data}
     return render(request, 'polls/index.html', context)
 
 
@@ -51,8 +61,8 @@ def homework_add_confirm(request, task_id):
         }
         return render(request, 'polls/actions/error.html', context)
     else:
-        userData = UserData.objects.get(user=request.user)
-        task = userData.task_set.get(pk=task_id)
+        user_data = UserData.objects.get(user=request.user)
+        task = user_data.task_set.get(pk=task_id)
         task.homework_set.create(name=name, link=link)
         return HttpResponseRedirect(reverse('add_done'))
 
@@ -70,7 +80,7 @@ def homework_delete_page(request, task_id, homework_id):
         'task_id': task_id,
         'homework': homework
     }
-    return render(request, 'polls/homework_delete_page.html', context)
+    return render(request, 'polls/homework_delete_confirm.html', context)
 
 
 @login_required(login_url='/accounts/login/')
@@ -79,7 +89,7 @@ def homework_delete_confirm(request, task_id, homework_id):
     homework = task.homework_set.get(pk=homework_id)
     try:
         homework.delete()
-    except:
+    except Exception:
         context = {
             'title': "Удаление работы",
             'text': "Произошла ошибка, работы не удалена"
@@ -210,7 +220,10 @@ def add_confirm(request):
 
 @login_required(login_url='/accounts/login/')
 def change(request):
-    user_data = UserData.objects.get(user=request.user)
+    try:
+        user_data = UserData.objects.get(user=request.user)
+    except UserData.DoesNotExist:
+        user_data = ''
     context = {'userData': user_data}
     return render(request, 'polls/actions/change.html', context)
 
@@ -220,7 +233,7 @@ def change_task(request, task_id):
     task = Task.objects.get(pk=task_id)
     context = {'task': task,
                'task_id' : task_id}
-    return render(request, 'polls/actions/change_form.html', context)
+    return render(request, 'polls/actions/change_confirm.html', context)
 
 
 @login_required(login_url='/accounts/login/')
@@ -250,7 +263,10 @@ def change_task_confirm(request, task_id):
 
 @login_required(login_url='/accounts/login/')
 def delete(request):
-    user_data = UserData.objects.get(user=request.user)
+    try:
+        user_data = UserData.objects.get(user=request.user)
+    except UserData.DoesNotExist:
+        user_data = ''
     context = {'userData': user_data}
     return render(request, 'polls/actions/delete.html', context)
 
@@ -262,7 +278,7 @@ def delete_task(request, task_id):
         'task': task,
         'task_id': task_id
     }
-    return render(request, 'polls/actions/delete_form.html', context)
+    return render(request, 'polls/actions/delete_confirm.html', context)
 
 
 @login_required(login_url='/accounts/login/')

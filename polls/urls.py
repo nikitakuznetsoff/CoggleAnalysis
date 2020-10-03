@@ -7,6 +7,7 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('', views.index, name='index'),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('registration/', views.registration, name='registration'),
 
     path('coggle/', views.coggle_auth, name='coggle_auth'),
 

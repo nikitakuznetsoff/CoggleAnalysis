@@ -33,27 +33,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="165fd791-ffc8-4ce5-b9a9-e5ad2d057dbf" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/polls/templates/registration/base_reg.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/polls/templates/registration/password_change_done.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/polls/templates/registration/password_reset_done.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/polls/templates/registration/register.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/polls/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/polls/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/mysite/manage.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/mysite/mysite/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/mysite/mysite/settings.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/mysite/mysite/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/mysite/mysite/wsgi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/templates/base.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/polls/templates/polls/actions/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/polls/templates/polls/actions/add.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/polls/templates/polls/actions/change.html" beforeDir="false" afterPath="$PROJECT_DIR$/polls/templates/polls/actions/change.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/polls/templates/polls/actions/change_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/polls/templates/polls/actions/change_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/templates/polls/actions/change_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/polls/templates/polls/actions/change_confirm.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/polls/templates/polls/actions/delete.html" beforeDir="false" afterPath="$PROJECT_DIR$/polls/templates/polls/actions/delete.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/polls/templates/polls/actions/delete_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/polls/templates/polls/actions/delete_form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/polls/templates/polls/actions/done.html" beforeDir="false" afterPath="$PROJECT_DIR$/polls/templates/polls/actions/done.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/polls/templates/polls/actions/error.html" beforeDir="false" afterPath="$PROJECT_DIR$/polls/templates/polls/actions/error.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/polls/templates/polls/homework_delete.html" beforeDir="false" afterPath="$PROJECT_DIR$/polls/templates/polls/homework_delete.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/polls/templates/polls/homework_delete_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/polls/templates/polls/homework_delete_page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/polls/templates/polls/homeworks.html" beforeDir="false" afterPath="$PROJECT_DIR$/polls/templates/polls/homeworks.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/polls/templates/polls/homeworks_add.html" beforeDir="false" afterPath="$PROJECT_DIR$/polls/templates/polls/homeworks_add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/templates/polls/actions/delete_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/polls/templates/polls/actions/delete_confirm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/templates/polls/homework_delete_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/polls/templates/polls/homework_delete_confirm.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/polls/templates/polls/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/polls/templates/polls/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/polls/templates/polls/task.html" beforeDir="false" afterPath="$PROJECT_DIR$/polls/templates/polls/task.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/polls/templates/registration/logged_out.html" beforeDir="false" afterPath="$PROJECT_DIR$/polls/templates/registration/logged_out.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/polls/templates/registration/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/polls/templates/registration/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/templates/registration/login.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/polls/templates/registration/password_change_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/polls/templates/registration/password_change_form.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/polls/templates/registration/password_reset_complete.html" beforeDir="false" afterPath="$PROJECT_DIR$/polls/templates/registration/password_reset_complete.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/polls/templates/registration/password_reset_confirm.html" beforeDir="false" afterPath="$PROJECT_DIR$/polls/templates/registration/password_reset_confirm.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/polls/templates/registration/password_reset_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/polls/templates/registration/password_reset_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,6 +85,17 @@
       </list>
     </option>
   </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -99,30 +117,38 @@
       </profile-state>
     </entry>
   </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SearchEverywhereHistoryKey" value=":&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="HTML" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/polls/templates/polls" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/polls/templates/registration" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/polls/templates/polls" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/polls/templates" />
-      <recent name="C:\UniversityProjects\Coursework\CoggleAnalysis\modules" />
-      <recent name="C:\UniversityProjects\Coursework\mysite\modules" />
-      <recent name="C:\UniversityProjects\Coursework\mysite\polls\modules" />
-      <recent name="C:\UniversityProjects\Coursework\mysite\polls\templates\registration" />
+      <recent name="$PROJECT_DIR$/polls/templates/registration/old" />
+      <recent name="$PROJECT_DIR$/polls/static/polls" />
+      <recent name="$PROJECT_DIR$/mysite" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/mysite/mysite" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/polls/templates/registration" />
+      <recent name="$PROJECT_DIR$/polls/static/polls" />
+      <recent name="$PROJECT_DIR$/polls" />
+      <recent name="$PROJECT_DIR$/polls/static" />
+      <recent name="$PROJECT_DIR$/polls/templates/vendor" />
     </key>
   </component>
   <component name="RunManager" selected="Django Server.mysite">
@@ -293,7 +319,8 @@
       <workItem from="1600200725778" duration="472000" />
       <workItem from="1600864314510" duration="5000" />
       <workItem from="1601400988027" duration="3876000" />
-      <workItem from="1601466730512" duration="5380000" />
+      <workItem from="1601466730512" duration="17291000" />
+      <workItem from="1601590591436" duration="26377000" />
     </task>
     <servers />
   </component>
@@ -338,6 +365,9 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="517" y="248" width="562" height="408" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1601471660289">
       <screen x="64" y="27" width="1472" height="837" />
@@ -347,22 +377,22 @@
       <screen x="64" y="27" width="1472" height="837" />
     </state>
     <state x="536" y="180" width="524" height="514" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/64.27.1472.837@64.27.1472.837" timestamp="1601468294962" />
-    <state width="1426" height="294" key="GridCell.Tab.0.bottom" timestamp="1601471500484">
+    <state width="1426" height="205" key="GridCell.Tab.0.bottom" timestamp="1601708508028">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
-    <state width="1426" height="294" key="GridCell.Tab.0.bottom/64.27.1472.837@64.27.1472.837" timestamp="1601471500484" />
-    <state width="1426" height="294" key="GridCell.Tab.0.center" timestamp="1601471500481">
+    <state width="1426" height="205" key="GridCell.Tab.0.bottom/64.27.1472.837@64.27.1472.837" timestamp="1601708508028" />
+    <state width="1426" height="205" key="GridCell.Tab.0.center" timestamp="1601708508027">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
-    <state width="1426" height="294" key="GridCell.Tab.0.center/64.27.1472.837@64.27.1472.837" timestamp="1601471500481" />
-    <state width="1426" height="294" key="GridCell.Tab.0.left" timestamp="1601471500480">
+    <state width="1426" height="205" key="GridCell.Tab.0.center/64.27.1472.837@64.27.1472.837" timestamp="1601708508027" />
+    <state width="1426" height="205" key="GridCell.Tab.0.left" timestamp="1601708508026">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
-    <state width="1426" height="294" key="GridCell.Tab.0.left/64.27.1472.837@64.27.1472.837" timestamp="1601471500480" />
-    <state width="1426" height="294" key="GridCell.Tab.0.right" timestamp="1601471500483">
+    <state width="1426" height="205" key="GridCell.Tab.0.left/64.27.1472.837@64.27.1472.837" timestamp="1601708508026" />
+    <state width="1426" height="205" key="GridCell.Tab.0.right" timestamp="1601708508027">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
-    <state width="1426" height="294" key="GridCell.Tab.0.right/64.27.1472.837@64.27.1472.837" timestamp="1601471500483" />
+    <state width="1426" height="205" key="GridCell.Tab.0.right/64.27.1472.837@64.27.1472.837" timestamp="1601708508027" />
     <state x="520" y="112" width="1016" height="742" key="SettingsEditor" timestamp="1599670195333">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
@@ -371,13 +401,17 @@
       <screen x="64" y="27" width="1472" height="837" />
     </state>
     <state x="584" y="361" width="432" height="182" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/64.27.1472.837@64.27.1472.837" timestamp="1601470716417" />
-    <state x="489" y="51" width="621" height="783" key="find.popup" timestamp="1601472111939">
+    <state x="489" y="51" width="621" height="783" key="find.popup" timestamp="1601671737459">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
-    <state x="489" y="51" width="621" height="783" key="find.popup/64.27.1472.837@64.27.1472.837" timestamp="1601472111939" />
+    <state x="489" y="51" width="621" height="783" key="find.popup/64.27.1472.837@64.27.1472.837" timestamp="1601671737459" />
     <state x="634" y="231" width="327" height="441" key="refactoring.ChangeSignatureDialog" timestamp="1601405973901">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
     <state x="634" y="231" width="327" height="441" key="refactoring.ChangeSignatureDialog/64.27.1472.837@64.27.1472.837" timestamp="1601405973901" />
+    <state x="463" y="185" width="672" height="678" key="search.everywhere.popup" timestamp="1601668555349">
+      <screen x="64" y="27" width="1472" height="837" />
+    </state>
+    <state x="463" y="185" width="672" height="678" key="search.everywhere.popup/64.27.1472.837@64.27.1472.837" timestamp="1601668555349" />
   </component>
 </project>
