@@ -1,0 +1,13 @@
+{% extends "main_site/base.html" %}
+
+{% block site_title %}Удаление{% endblock %}
+
+{% block content %}
+    <div class="container mx-auto" style="width: 450px">
+        <p class="text-center font-weight -bolder mt-4" >Удаление задания</p>
+
+        <div class="alert alert-primary">Вы уверены, что хотите удалить задание: <strong>{{ task.title }}?</strong></div>
+        <a class="btn btn-primary btn-block" href="{% url 'delete_task_confirm' task_id %}">Подтверждаю</a>
+        <a class="btn btn-danger btn-block" href="{% url 'delete' %}">Отмена</a>
+    </div>
+{% endblock %}

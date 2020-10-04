@@ -1,0 +1,12 @@
+{% extends "main_site/base.html" %}
+
+{% block site_title %}Успешно{% endblock %}
+
+{% block content %}
+    <div class="container mt-3">
+        <p class="text-center font-weight-bolder mt-4" >{{ title }}</p>
+        <div class="alert alert-danger">
+            {{ text }}
+        </div>
+    </div>
+{% endblock %}

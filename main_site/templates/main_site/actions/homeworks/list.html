@@ -1,0 +1,93 @@
+{% extends "main_site/base.html" %}
+
+{% block site_title %}Список работ{% endblock %}
+
+{% block page_title %}Список работ{% endblock %}
+
+{% block menu %}
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>Выполненные работы</span>
+        </a>
+        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Операции:</h6>
+                <a class="collapse-item" href="{% url 'homework_add' task.pk %}">Добавить</a>
+                <a class="collapse-item" href="{% url 'homework_delete' task.pk %}">Удалить</a>
+            </div>
+        </div>
+    </li>
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}">Главная</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Список работ</li>
+            </ol>
+        </nav>
+
+        <div class="list-group mb-5">
+            <div class="row mb-3">
+                <div class="col text-center">Имя ученика</div>
+                <div class="col text-center">Оценка структурного сходства</div>
+                <div class="col text-center">Оценка сходства текстового содержания</div>
+            </div>
+        {% for homework in task.homework_set.all %}
+             <a href="{{ homework.pk }}" class="list-group-item list-group-item-action align-items-center">
+                 <div class="row">
+                     <div class="col">
+                         {{ homework.name }}
+                     </div>
+                     <div class="col text-center">
+                         {% if homework.similarity >= 70 %}
+                             <span class="badge badge-success">
+                                 {{ homework.similarity }} %
+                             </span>
+                         {% endif %}
+                         {% if homework.similarity >= 50 and homework.similarity < 70 %}
+                             <span class="badge badge-secondary">
+                                 {{ homework.similarity }} %
+                             </span>
+                         {% endif %}
+                         {% if homework.similarity >= 25 and homework.similarity < 50 %}
+                             <span class="badge badge-warning">
+                                 {{ homework.similarity }} %
+                             </span>
+                         {% endif %}
+                         {% if homework.similarity < 25 %}
+                             <span class="badge badge-danger">
+                                 {{ homework.similarity }} %
+                             </span>
+                         {% endif %}
+                     </div>
+                     <div class="col text-center">
+                         {% if homework.plagiarism >= 70 %}
+                             <span class="badge badge-success">
+                                 {{ homework.plagiarism }} %
+                             </span>
+                         {% endif %}
+                         {% if homework.plagiarism >= 50 and homework.plagiarism < 70 %}
+                             <span class="badge badge-secondary">
+                                 {{ homework.plagiarism }} %
+                             </span>
+                         {% endif %}
+                         {% if homework.plagiarism >= 25 and homework.plagiarism < 50 %}
+                             <span class="badge badge-warning">
+                                 {{ homework.plagiarism }} %
+                             </span>
+                         {% endif %}
+                         {% if homework.plagiarism < 25 %}
+                             <span class="badge badge-danger">
+                                 {{ homework.plagiarism }} %
+                             </span>
+                         {% endif %}
+                     </div>
+                 </div>
+             </a>
+        {% endfor %}
+        </div>
+    </div>
+{% endblock %}

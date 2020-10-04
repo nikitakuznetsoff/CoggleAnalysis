@@ -1,0 +1,41 @@
+{% extends "main_site/base.html" %}
+
+{% block site_title %}Изменение{% endblock %}
+
+{% block page_title %}Изменение описания{% endblock %}
+
+{% block content %}
+    <div class="container mt-3">
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}">Главная</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Список заданий</li>
+            </ol>
+        </nav>
+
+        <div class="alert alert-warning" role="alert">
+            Нажмите на задание для его изменения
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-4 ml-3">Задание</div>
+            <div class="col-4">Описание</div>
+        </div>
+
+        <div class="list-group mb-5">
+            {% for task in userData.task_set.all %}
+                <a href="{{ task.pk }}" class="list-group-item list-group-item-action">
+                    <div class="row">
+                        <div class="col-4">
+                            {{ task.title }}
+                        </div>
+                        <div class="col-4">
+                            {{ task.about }}
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
