@@ -3,7 +3,6 @@ import json
 import webbrowser
 
 from requests.auth import HTTPBasicAuth
-from flask import request
 
 
 # Класс для основных операций с API
