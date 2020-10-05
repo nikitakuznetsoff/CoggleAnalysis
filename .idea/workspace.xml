@@ -34,7 +34,8 @@
   <component name="ChangeListManager">
     <list default="true" id="165fd791-ffc8-4ce5-b9a9-e5ad2d057dbf" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/coggle.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/coggle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/templates/registration/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/registration/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mind_maps_analysis/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/mind_maps_analysis/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -298,7 +299,7 @@
       <workItem from="1601721982241" duration="15149000" />
       <workItem from="1601838103589" duration="4466000" />
       <workItem from="1601845727451" duration="678000" />
-      <workItem from="1601846514883" duration="15158000" />
+      <workItem from="1601846514883" duration="16454000" />
     </task>
     <servers />
   </component>
@@ -373,10 +374,10 @@
       <screen x="64" y="27" width="1472" height="837" />
     </state>
     <state x="584" y="361" width="432" height="182" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/64.27.1472.837@64.27.1472.837" timestamp="1601470716417" />
-    <state x="489" y="51" width="621" height="783" key="find.popup" timestamp="1601898238949">
+    <state x="489" y="51" width="621" height="783" key="find.popup" timestamp="1601904410988">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
-    <state x="489" y="51" width="621" height="783" key="find.popup/64.27.1472.837@64.27.1472.837" timestamp="1601898238949" />
+    <state x="489" y="51" width="621" height="783" key="find.popup/64.27.1472.837@64.27.1472.837" timestamp="1601904410988" />
     <state x="634" y="231" width="327" height="441" key="refactoring.ChangeSignatureDialog" timestamp="1601405973901">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
