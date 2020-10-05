@@ -65,23 +65,31 @@
                 <label class="col-sm-3 col-form-label" for="table_name">Название таблицы</label>
                 <div class="col-sm-9">
                     <input name="table" type="text" id="table_name" class="form-control"
-                           placeholder="Название таблицы">
+                           placeholder="Введите название таблицы (по умолчанию - первая таблица)">
+                </div>
+            </div>
+
+             <div class="form-group row">
+                <label class="col-sm-3 col-form-label" for="row">Начальная строка</label>
+                <div class="col-sm-9">
+                    <input name="row" type="text" id="row" class="form-control"
+                           placeholder="Введите начальную строку (по умолчанию - первая строка)">
                 </div>
             </div>
 
             <div class="form-group row">
-                <label class="col-sm-3 col-form-label" for="names_cell">Ячейка имен</label>
+                <label class="col-sm-3 col-form-label" for="names_column">Столбец</label>
                 <div class="col-sm-9">
-                    <input name="names" type="text" id="names_cell" class="form-control"
-                           placeholder="Ячейка начала столбца имен">
+                    <input name="names" type="text" id="names_column" class="form-control"
+                           placeholder="Введите столбец имен (по умолчанию - столбец 'A')">
                 </div>
             </div>
 
             <div class="form-group row">
-                <label class="col-sm-3 col-form-label" for="links_cell">Ячейка ссылок</label>
+                <label class="col-sm-3 col-form-label" for="links_column">Столбец ссылок</label>
                 <div class="col-sm-9">
-                    <input name="links" type="text" id="links_cell" class="form-control"
-                           placeholder="Ячейка начала столбца ссылок">
+                    <input name="links" type="text" id="links_column" class="form-control"
+                           placeholder="Введите столбец ссылок (по умолчанию - столбец 'B')">
                 </div>
             </div>
             <button type="submit" class="btn btn-primary mt-2">Сохранить</button>

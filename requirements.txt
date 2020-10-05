@@ -6,7 +6,6 @@ dj-database-url
 whitenoise
 django-heroku
 networkx
-flask
 apsw
 requests
 openpyxl

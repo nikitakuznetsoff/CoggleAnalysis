@@ -1,25 +1,26 @@
 # Чтение Имен учеников и ссылок
-def read_mindmap_ids(sheet, point_names, point_links):
-    if point_names == '':
-        point_names = "A1"
-    if point_links == '':
-        point_links = "B1"
+def read_mindmap_ids(sheet, names_column, links_column, start_row):
+    if names_column == '':
+        names_column = "A"
+    if links_column == '':
+        links_column = "B"
+    if start_row == '':
+        start_row = 1
 
     arr = [[], []]
-    column_names = ord(point_names[0]) - 65
-    column_links = ord(point_links[0]) - 65
-    str_row_names = point_names[1:]
-    str_row_links = point_links[1:]
+    names_column_index = ord(names_column) - 65
+    links_column_index = ord(links_column) - 65
 
-    for row in sheet.iter_rows(None, int(str_row_links), None, column_links):
+    for row in sheet.iter_rows(min_row=start_row):
         try:
-            if row[column_links].value:
-                arr[0].append(row[column_names].value.strip())
-                arr[1].append(link_to_id(row[column_links].value.strip()))
+            if row[names_column_index].value:
+                arr[0].append(row[names_column_index].value.strip())
+                arr[1].append(link_to_id(row[links_column_index].value.strip()))
             else:
                 arr[0].append(None)
                 arr[1].append(None)
-        except Exception:
+        except Exception as e:
+            print("[SHEET ERROR]" + str(e))
             return arr
     return arr
 

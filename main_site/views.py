@@ -18,7 +18,7 @@ from requests.auth import HTTPBasicAuth
 from modules import checks, coggle, readers, analysis, text_search
 from .models import UserData, Task, Homework
 
-#
+
 # def registration(request):
 #     form = UserCreationForm(request.POST)
 #     if form.is_valid():
@@ -165,17 +165,31 @@ def add_confirm(request):
         true_work_link = readers.link_to_id(true_work)
 
         keys = request.POST['keys']
-        names_cell = request.POST['names']
-        links_cell = request.POST['links']
+        names_column = request.POST['names']
+        links_column = request.POST['links']
+        start_row = request.POST['row']
 
-        wb = load_workbook(filename=file)
-    except Exception:
+    except Exception as e:
+        print(e)
         context = {
             'title': "Создание задания",
             'text': "Произошла ошибка при создании задания"
         }
         return render(request, 'main_site/actions/error.html', context)
     else:
+        try:
+            # Проверка наличия токена для анализа
+            if coggle.coggle_user.access_token == "":
+                coggle.coggle_user.authorization()
+                # return render(request, 'main_site/actions/add.html')
+        except Exception:
+            context = {
+                'title': "Создание задания",
+                'text': "Произошла ошибка при создании задания"
+            }
+            return render(request, 'main_site/actions/error.html', context)
+
+        wb = load_workbook(filename=file, read_only=True)
         # Проверка наличия заданной таблицы в Excel файле
         if table_name != '':
             if not checks.check_correct_tablename(wb, table_name):
@@ -186,28 +200,31 @@ def add_confirm(request):
                 return render(request, 'main_site/actions/error.html', context)
 
         # Проверка формата заданных ячеек
-        if not checks.check_correct_cellname(names_cell) or not checks.check_correct_cellname(links_cell):
+        if not checks.check_correct_column_name(names_column) \
+                or not checks.check_correct_column_name(links_column) \
+                or not checks.check_correct_row_name(start_row):
             context = {
                 'title': "Создание задания",
-                'text': "Произошла ошибка при создании задания"
+                'text': "Ошибка в формате столбцов / ячеек"
             }
             return render(request, 'main_site/actions/error.html', context)
 
-        try:
-            # Проверка наличия токена для анализа
-            if coggle.coggle_user.access_token == "":
-                coggle.coggle_user.authorization()
-                return render(request, 'main_site/actions/add.html')
-        except Exception:
-            context = {
-                'title': "Создание задания",
-                'text': "Произошла ошибка при создании задания"
-            }
-            return render(request, 'main_site/actions/error.html', context)
+        # try:
+        #     # Проверка наличия токена для анализа
+        #     if coggle.coggle_user.access_token == "":
+        #         coggle.coggle_user.authorization()
+        #         return render(request, 'main_site/actions/add.html')
+        # except Exception:
+        #     context = {
+        #         'title': "Создание задания",
+        #         'text': "Произошла ошибка при создании задания"
+        #     }
+        #     return render(request, 'main_site/actions/error.html', context)
 
         # Создание объекта домашнего задания для текущего пользователя
         curr_data = UserData.objects.get(user=request.user)
         curr_task = curr_data.task_set.create(title=title_new, about=about_new)
+        print("[CREATING TASK] TITLE: " + title_new + "; ABOUT: " + about_new)
 
         # Создание массива ключевых значений
         arr_keys = keys.split(",")
@@ -219,20 +236,22 @@ def add_confirm(request):
         else:
             sheet = wb[wb.sheetnames[0]]
 
+        print("[SHEET] " + str(sheet))
         # Чтение информации из таблицы
-        arr = readers.read_mindmap_ids(sheet, names_cell, links_cell)
-
+        arr = readers.read_mindmap_ids(sheet, names_column, links_column, start_row)
+        print("IDs: " + str(arr))
         # Получение массива коэффициентов структурного сходства
         arr_with_coef = analysis.mindmap_analysis(arr[1], true_work_link)
 
         # Массив текстов каждой интеллект карты
-        arr_text = analysis.take_text(arr[1])
+        # arr_text = analysis.take_text(arr[1])
 
-        # Массив с вычисленными сходствами текстовых составляющих
-        if len(arr_keys) > 0:
-            sim_arr = text_search.initialization(arr_keys, arr_text)
-        else:
-            sim_arr = [0] * len(arr_keys)
+        sim_arr = []
+        # # Массив с вычисленными сходствами текстовых составляющих
+        # if len(arr_keys) > 0:
+        #     sim_arr = text_search.initialization(arr_keys, arr_text)
+        # else:
+        #     sim_arr = [0] * len(arr_keys)
 
         # Создание работ
         for i in range(0, len(arr[0])):
@@ -248,7 +267,7 @@ def add_confirm(request):
                 sim = round(sim_arr[i] * 100)
             else:
                 sim = -1
-
+            print("[ADDING HW] NAME: " + arr[0][i])
             curr_task.homework_set.create(name=arr[0][i], link=arr[1][i],
                                           similarity=coef, plagiarism=sim)
 
