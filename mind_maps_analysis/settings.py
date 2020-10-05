@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-# import django_heroku
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -76,6 +76,21 @@ WSGI_APPLICATION = 'mind_maps_analysis.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+# DATABASES = {
+#     # 'default': {
+#     #     'ENGINE': 'django.db.backends.sqlite3',
+#     #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     # }
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'mindmaps',
+#         'USER': 'espero',
+#         'PASSWORD': 'pass',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432',
+#     }
+# }
+
 DATABASES = {
     # 'default': {
     #     'ENGINE': 'django.db.backends.sqlite3',
@@ -83,10 +98,10 @@ DATABASES = {
     # }
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mindmaps',
-        'USER': 'espero',
-        'PASSWORD': 'pass',
-        'HOST': '127.0.0.1',
+        'NAME': 'deo0rl6i63qi4p',
+        'USER': 'iucraigpzqykyi',
+        'PASSWORD': '73044b58709b7552c4a1b033df5327924e29fd6765ad0d42beb6233c174a8524',
+        'HOST': 'ec2-174-129-253-27.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
@@ -132,4 +147,4 @@ STATIC_URL = '/static/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-# django_heroku.settings(locals())
+django_heroku.settings(locals())

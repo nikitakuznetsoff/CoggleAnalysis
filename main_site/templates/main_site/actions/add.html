@@ -17,52 +17,73 @@
 
         <form action="{% url 'add_confirm' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <div class="form-group">
-                <label for="title-text">Название:</label>
-                <input name="title" type="text" class="form-control"
-                       id="title-text" placeholder="Введите название">
-            </div>
-
-            <div class="form-group">
-                <label for="about-text" class="col-form-label">Описание работы:</label>
-                <textarea name="about" class="form-control" id="about-text"
-                placeholder="Введите описание работы"></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="true-text">Ссылка на правильную работу:</label>
-                <input name="true_work" type="text" class="form-control" id="true-text"
-                placeholder="Введите ссылку">
-            </div>
-
-            <div class="form-group">
-                <label for="keys-text" class="col-form-label">Ключевые текстовые значения:</label>
-                <textarea name="keys" class="form-control" id="keys-text"
-                placeholder="Введите ключи через запятую"></textarea>
-            </div>
-
-            <label>Выберите .xls файл с ссылками на работы</label>
-            <div class="input-group mb-4">
-                <div class="custom-file">
-                    <input name="file_table" type="file" accept=".xls,.xlsx" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-                    <label class="custom-file-label" for="inputGroupFile01">Выберите файл</label>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label" for="title-text">Название:</label>
+                <div class="col-sm-9">
+                    <input name="title" type="text" class="form-control"
+                           id="title-text" placeholder="Введите название">
                 </div>
             </div>
 
-            <div class="form-group form-inline">
-{#                <label for="table_name">Название таблицы</label>#}
-                <input name="table" type="text" id="table_name" class="form-control mx-sm-3"
-                    placeholder="Название таблицы">
-
-{#                <label for="names_cell">Ячейка имен</label>#}
-                <input name="names" type="text" id="names_cell" class="form-control mx-sm-3"
-                    placeholder="Ячейка начала столбца имен">
-
-{#                <label for="links_cell">Ячейка ссылок</label>#}
-                <input name="links" type="text" id="links_cell" class="form-control mx-sm-3"
-                    placeholder="Ячейка начала столбца ссылок">
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label" for="about-text">Описание работы:</label>
+                <div class="col-sm-9">
+                    <textarea name="about" class="form-control" id="about-text"
+                          placeholder="Введите описание работы"></textarea>
+                </div>
             </div>
 
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label" for="true-text">Ссылка на правильную работу:</label>
+                <div class="col-sm-9">
+                    <input name="true_work" type="text" class="form-control" id="true-text"
+                           placeholder="Введите ссылку">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label" for="keys-text">Ключевые текстовые значения:</label>
+                <div class="col-sm-9">
+                    <textarea name="keys" class="form-control" id="keys-text"
+                              placeholder="Введите ключи через запятую"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label" for="input-file">Выберите .xls файл с ссылками на работы</label>
+                <div class="col-sm-9">
+                    <div class="input-group mb-4">
+                        <div class="custom-file">
+                            <input name="file_table" type="file" accept=".xls,.xlsx" class="custom-file-input" id="input-file" aria-describedby="inputGroupFileAddon01">
+                            <label class="custom-file-label" for="inputGroupFile01">Выберите файл</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label" for="table_name">Название таблицы</label>
+                <div class="col-sm-9">
+                    <input name="table" type="text" id="table_name" class="form-control"
+                           placeholder="Название таблицы">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label" for="names_cell">Ячейка имен</label>
+                <div class="col-sm-9">
+                    <input name="names" type="text" id="names_cell" class="form-control"
+                           placeholder="Ячейка начала столбца имен">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label" for="links_cell">Ячейка ссылок</label>
+                <div class="col-sm-9">
+                    <input name="links" type="text" id="links_cell" class="form-control"
+                           placeholder="Ячейка начала столбца ссылок">
+                </div>
+            </div>
             <button type="submit" class="btn btn-primary mt-2">Сохранить</button>
         </form>
     </div>
