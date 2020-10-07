@@ -1,12 +1,11 @@
-import datetime
-
 from django.db import models
-from django.utils import timezone
 from django.contrib.auth.models import User
 
 
 class UserData(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    coggle_key = models.CharField(max_length=300, default="Undefined")
+    miro_key = models.CharField(max_length=300, default="Undefined")
 
     def __str__(self):
         return self.user.username

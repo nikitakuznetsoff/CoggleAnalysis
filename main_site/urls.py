@@ -5,10 +5,11 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    # path('accounts/', include('django.contrib.auth.urls')),
-    # path('registration/', views.registration, name='registration'),
 
-    path('coggle/', views.coggle_auth, name='coggle_auth'),
+    path('coggle/', views.coggle_get_code_view, name='coggle_get_code'),
+    path('coggle/auth', views.coggle_auth_view, name='coggle_auth'),
+    path('miro/', views.miro_get_code_view, name='miro_get_code'),
+    path('miro/auth', views.miro_auth_view, name='miro_auth'),
 
     path('<int:task_id>/', views.homeworks, name='homeworks'),
     path('<int:task_id>/<int:homework_id>', views.homework, name='homework'),

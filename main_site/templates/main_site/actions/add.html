@@ -14,15 +14,29 @@
             </ol>
         </nav>
 
-        {% if coggle_key %}
-            <div class="card mb-4 py-3 border-left-danger">
+        <div class="row mb-2 mx-auto">
+            {% if coggle_key %}
+            <div class="card m-2 border-left-danger">
                 <div class="card-body">
-                  Отсутствует ключ авторизации от Coggle.it.
-                  Пройдите по этой ссылке для его получения.
+                    Отсутствует ключ доступа к Coggle.it
+                    <a href="{% url 'coggle_auth' %}" class="btn btn-primary btn-icon-split ml-2">
+                        <span class="text">Получить ключ</span>
+                    </a>
                 </div>
               </div>
+            {% endif %}
+            {% if miro_key %}
+                <div class="card m-2  border-left-danger">
+                <div class="card-body">
+                    Отсутствует ключ доступа к Miro.com
+                    <a href="{% url 'miro_auth' %}" class="btn btn-primary btn-icon-split ml-2">
+                        <span class="text">Получить ключ</span>
+                    </a>
+                </div>
+              </div>
+            {% endif %}
+        </div>
 
-        {% endif %}
 
         <form action="{% url 'add_confirm' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
@@ -49,6 +63,24 @@
                         <p>{{ form.about.errors }}</p>
                     </div>
                 {% endif %}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label" for="about-text">Выбор сервиса:</label>
+                <div class="col-sm-9">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" value="Coggle" id="serviceCheck1" name="service" checked>
+                        <label class="form-check-label" for="serviceCheck1">
+                            Coggle
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" value="Miro" id="serviceCheck2" name="service">
+                        <label class="form-check-label" for="serviceCheck2">
+                            Miro
+                        </label>
+                    </div>
                 </div>
             </div>
 

@@ -2,20 +2,15 @@ import json
 import requests
 
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
-from django.urls import reverse
 from django.views import generic
 
-import django.contrib.auth.forms as f
 
 from openpyxl import load_workbook
 from requests.auth import HTTPBasicAuth
 
-from modules import checks, coggle, readers, analysis, text_search
+from modules import checks, coggle, miro, readers, analysis, text_search
 from .models import UserData, Task, Homework
 
 from .forms import TaskForm
@@ -23,7 +18,7 @@ from .forms import TaskForm
 
 @login_required(login_url='/accounts/login/')
 def index(request):
-    # coggle.coggle_user.authorization()
+    # coggle.coggle_client.authorization()
     try:
         user_data = UserData.objects.get(user=request.user)
     except UserData.DoesNotExist:
@@ -38,7 +33,10 @@ def homeworks(request, task_id):
         task = Task.objects.get(pk=task_id)
     except Task.DoesNotExist:
         task = ''
-    context = {'task': task}
+    context = {
+        'task_id': task_id,
+        'task': task
+    }
     return render(request, 'main_site/actions/homeworks/list.html', context)
 
 
@@ -55,14 +53,11 @@ def homework(request, task_id, homework_id):
     return render(request, 'main_site/actions/homeworks/homework.html', context)
 
 
-class TasksView(LoginRequiredMixin, generic.DetailView):
-    model = Homework
-    template_name = 'main_site/actions/homeworks/homework.html'
-
-
 @login_required(login_url='/accounts/login/')
 def homework_add(request, task_id):
-    context = {'task_id': task_id}
+    context = {
+        'task_id': task_id
+    }
     return render(request, 'main_site/actions/homeworks/create.html', context)
 
 
@@ -72,7 +67,7 @@ def homework_add_confirm(request, task_id):
         name = request.POST['name']
         link = request.POST['link']
         link = readers.link_to_id(link)
-    except Exception:
+    except Exception as e:
         context = {
             'title': "Добавление работы",
             'text': "Произошла ошибка при добавлении работы"
@@ -94,13 +89,10 @@ def homework_add_confirm(request, task_id):
 def homework_delete(request, task_id):
     task = Task.objects.get(pk=task_id)
     context = {
+        'task_id': task_id,
         'task': task,
     }
     return render(request, 'main_site/actions/homeworks/delete.html', context)
-
-# class HomeworkDelete(LoginRequiredMixin, generic.DetailView):
-#     model = Task
-#     template_name = 'main_site/actions/homeworks/delete.html'
 
 
 @login_required(login_url='/accounts/login/')
@@ -109,6 +101,7 @@ def homework_delete_page(request, task_id, homework_id):
     homework = task.homework_set.get(pk=homework_id)
     context = {
         'task_id': task_id,
+        'task': task,
         'homework': homework
     }
     return render(request, 'main_site/actions/homeworks/delete_confirm.html', context)
@@ -138,10 +131,10 @@ def homework_delete_confirm(request, task_id, homework_id):
 
 @login_required(login_url='/accounts/login/')
 def task_add(request):
-    if coggle.coggle_user.access_token == "":
-        context = {'coggle_key': True}
-    else:
-        context = {'coggle_key': False}
+    user_data = UserData.objects.get(user=request.user)
+    context = dict()
+    context['coggle_key'] = user_data.coggle_key == "Undefined"
+    context['miro_key'] = user_data.miro_key == "Undefined"
     return render(request, 'main_site/actions/add.html', context)
 
 
@@ -150,18 +143,6 @@ def task_add_confirm(request):
     if request.method == 'POST':
         task_form = TaskForm(request.POST, request.FILES)
         if task_form.is_valid():
-            if coggle.coggle_user.access_token == "":
-                try:
-                    coggle.coggle_user.authorization()
-                    return render(request, 'main_site/actions/add.html', {'form': task_form})
-                except Exception as e:
-                    print(e)
-                    context = {
-                        'title': "Создание задания",
-                        'text': "Произошла ошибка при получении ключа авторизации"
-                    }
-                    return render(request, 'main_site/actions/error.html', context)
-
             file_table = request.FILES['file_table']
             # Загрузка нужной таблицы
             workbook = load_workbook(filename=file_table, read_only=True)
@@ -192,14 +173,53 @@ def task_add_confirm(request):
                 sheet = workbook[data['table_name']]
             else:
                 sheet = workbook[workbook.sheetnames[0]]
-
             print("[SHEET] " + str(sheet))
+
             # Чтение информации из таблицы
-            arr = readers.read_mindmap_ids(sheet, data['names_column'],
-                                           data['links_column'], data['start_row'])
+            arr = readers.read_mindmap_ids(
+                sheet=sheet,
+                names_column=data['names_column'],
+                links_column=data['links_column'],
+                start_row=data['start_row']
+            )
             print("IDs: " + str(arr))
+
+            user_data = UserData.objects.get(user=request.user)
+            web_service_object = None
             # Получение массива коэффициентов структурного сходства
-            arr_with_coef = analysis.mindmap_analysis(arr[1], readers.link_to_id(data['correct_work']))
+            if data['service'] == "Coggle":
+                web_service_object = coggle.Coggle(
+                    app_name=coggle.APP_NAME,
+                    client_id=coggle.CLIENT_ID,
+                    client_secret=coggle.CLIENT_SECRET,
+                    redirect_uri=coggle.REDIRECT_URI,
+                    access_token=user_data.coggle_key
+                )
+                arr_with_coef = analysis.mindmap_analysis(
+                    identificators=arr[1],
+                    correct_mindmap_id=readers.link_to_id(data['correct_work']),
+                    service=web_service_object
+                )
+            elif data['service'] == "Miro":
+                web_service_object = miro.Miro(
+                    app_name=miro.APP_NAME,
+                    client_id=miro.CLIENT_ID,
+                    client_secret=miro.CLIENT_SECRET,
+                    redirect_uri=miro.REDIRECT_URI,
+                    access_token=user_data.miro_key
+                )
+                arr_with_coef = analysis.mindmap_analysis(
+                    identificators=arr[1],
+                    correct_mindmap_id=readers.link_to_id(data['correct_work']),
+                    service=web_service_object
+                )
+            else:
+                context = {
+                    'title': "Создание задания",
+                    'text': "Ошибка в выборе сервиса"
+                }
+                return render(request, 'main_site/actions/error.html', context)
+
             print("Coefs: " + str(arr_with_coef))
 
             # Массив текстов каждой интеллект карты
@@ -232,8 +252,11 @@ def task_add_confirm(request):
                 else:
                     sim = -1
                 print("[ADDING HW] NAME: " + arr[0][i])
-                curr_task.homework_set.create(name=arr[0][i], link=arr[1][i],
-                                              similarity=coef, plagiarism=sim)
+                curr_task.homework_set.create(
+                    name=arr[0][i],
+                    link=arr[1][i],
+                    similarity=coef,
+                    plagiarism=sim)
             context = {
                 'title': "Создание задания",
                 'text': "Задание успешно добавлено"
@@ -333,25 +356,91 @@ def delete_task_confirm(request, task_id):
 
 ########################
 
+@login_required(login_url='/accounts/login/')
+def coggle_auth_view(request):
+    obj = coggle.Coggle(
+        app_name=coggle.APP_NAME,
+        client_id=coggle.CLIENT_ID,
+        client_secret=coggle.CLIENT_SECRET,
+        redirect_uri=coggle.REDIRECT_URI
+    )
+    obj.authorization()
+    return redirect(task_add)
+
 
 @login_required(login_url='/accounts/login/')
-def coggle_auth(request):
+def coggle_get_code_view(request):
     try:
         code = request.GET['code']
-    except Exception:
+    except Exception as e:
+        print(e)
         context = {
             'title': "Ошибка токена",
             'text': "Ключ авторизации не был получен"
         }
         return render(request, 'main_site/actions/error.html', context)
     else:
-        params = {"code": code, "grant_type": "authorization_code", "redirect_uri": coggle.redirect_uri}
-        resp1 = requests.post(coggle.coggle_user.url_base + "token", auth=HTTPBasicAuth(coggle.client_id, coggle.client_secret), json=params)
-        information_auth = json.loads(resp1.text)
-        coggle.coggle_user.access_token = information_auth["access_token"]
-
+        params = {
+            'code': code,
+            'grant_type': "authorization_code",
+            'redirect_uri': coggle.REDIRECT_URI
+        }
+        response = requests.post(
+            coggle.URL_BASE + "token",
+            auth=HTTPBasicAuth(coggle.CLIENT_ID, coggle.CLIENT_SECRET),
+            json=params
+        )
+        information_auth = json.loads(response.text)
+        user_data = UserData.objects.get(user=request.user)
+        user_data.coggle_key = information_auth['access_token']
+        user_data.save()
         context = {
             'title': "Получение токена",
             'text': "Ключ авторизации был успешно получен"
         }
-    return render(request, 'main_site/actions/done.html', context)
+        return render(request, 'main_site/actions/done.html', context)
+
+
+@login_required(login_url='/accounts/login/')
+def miro_auth_view(request):
+    obj = miro.Miro(
+        app_name=miro.APP_NAME,
+        client_id=miro.CLIENT_ID,
+        client_secret=miro.CLIENT_SECRET,
+        redirect_uri=miro.REDIRECT_URI
+    )
+    obj.authorization()
+    return redirect(task_add)
+
+
+@login_required(login_url='/accounts/login/')
+def miro_get_code_view(request):
+    try:
+        code = request.GET['code']
+    except Exception as e:
+        print(e)
+        context = {
+            'title': "Ошибка токена",
+            'text': "Ключ авторизации не был получен"
+        }
+        return render(request, 'main_site/actions/error.html', context)
+    else:
+        params = {
+            'code': code,
+            'grant_type': "authorization_code",
+            'redirect_uri': miro.REDIRECT_URI
+        }
+        response = requests.post(
+            miro.miro_client.url_base + "token",
+            auth=HTTPBasicAuth(miro.CLIENT_ID, miro.CLIENT_SECRET),
+            json=params
+        )
+        information_auth = json.loads(response.text)
+        user_data = UserData.objects.get(user=request.user)
+        user_data.miro_key = information_auth['access_token']
+        user_data.save()
+        context = {
+            'title': "Получение токена",
+            'text': "Ключ авторизации был успешно получен"
+        }
+        return render(request, 'main_site/actions/done.html', context)

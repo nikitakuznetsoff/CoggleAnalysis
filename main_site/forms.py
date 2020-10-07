@@ -5,6 +5,7 @@ class TaskForm(forms.Form):
     title = forms.CharField(max_length=80)
     about = forms.CharField(widget=forms.Textarea)
     file_table = forms.FileField()
+    service = forms.CharField()
 
     # correct_work = forms.URLField()
     text_keys = forms.CharField()

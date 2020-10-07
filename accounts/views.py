@@ -1,9 +1,7 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
-
-
-# Create your views here.
+from main_site.models import UserData
 
 
 def registration(request):
@@ -14,6 +12,7 @@ def registration(request):
         password = form.cleaned_data.get('password1')
         user = authenticate(username=username, password=password)
         login(request, user)
+        UserData.objects.create(user=user)
         return redirect('index')
     # else:
     #     form = UserCreationForm()

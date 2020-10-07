@@ -1,29 +1,13 @@
-{% extends "main_site/base.html" %}
+{% extends "main_site/actions/homeworks/base_homework.html" %}
 
 {% block site_title %}Удаления работы{% endblock %}
 
 {% block page_title %}Подтвеждение удаления работы{% endblock %}
 
-{% block menu %}
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-            <i class="fas fa-fw fa-wrench"></i>
-            <span>Выполненные работы</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Операции:</h6>
-                <a class="collapse-item" href="{% url 'homework_add' task_id %}">Добавить</a>
-                <a class="collapse-item" href="{% url 'homework_delete' task_id%}">Удалить</a>
-            </div>
-        </div>
-    </li>
-{% endblock %}
-
 {% block content %}
     <div class="container mx-auto" style="width: 450px">
         <div class="alert alert-primary">Вы уверены, что хотите удалить работу: <strong>{{ homework.name }}?</strong></div>
-        <a class="btn btn-primary btn-block" href="{% url 'homework_delete_confirm' task_id homework.pk %}">Подтверждаю</a>
+        <a class="btn btn-primary btn-block" href="{% url 'homework_delete_confirm' task.pk homework.pk %}">Подтверждаю</a>
         <a class="btn btn-danger btn-block" href="{% url 'delete' %}">Отмена</a>
     </div>
 {% endblock %}

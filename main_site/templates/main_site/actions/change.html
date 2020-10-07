@@ -25,7 +25,7 @@
 
         <div class="list-group mb-5">
             {% for task in userData.task_set.all %}
-                <a href="{{ task.pk }}" class="list-group-item list-group-item-action">
+                <a href="{% url 'change_task' task.pk %}" class="list-group-item list-group-item-action">
                     <div class="row">
                         <div class="col-4">
                             {{ task.title }}

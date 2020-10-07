@@ -26,7 +26,14 @@ def read_mindmap_ids(sheet, names_column, links_column, start_row):
 
 
 # Возврат ИДшника из ссылки
-def link_to_id(link):
-    first = link.find("/diagram/")
-    last = link.find("/t/")
-    return link[first + 9:last:1]
+def link_to_id(link: str) -> str:
+    left, right = -1, -1
+    if link.find("miro.com") != -1:
+        left = link.find("/app/board/") + 11
+        right = len(link)-1
+    elif link.find("coggle.it") != -1:
+        left = link.find("/diagram/") + 9
+        right = link.find("/t/")
+    if left == -1 or right == -1:
+        raise ValueError('incorrect mindmap link')
+    return link[left:right]
