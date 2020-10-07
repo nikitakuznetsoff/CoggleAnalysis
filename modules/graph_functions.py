@@ -2,7 +2,7 @@ import networkx as nx
 from openpyxl.styles import Font, Color
 from openpyxl.styles import colors
 from openpyxl import Workbook
-import  openpyxl
+import openpyxl
 
 
 # Группа методов для преобразования данных о вершинах в граф networkx

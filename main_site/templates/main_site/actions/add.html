@@ -14,6 +14,15 @@
             </ol>
         </nav>
 
+        {% if coggle_key %}
+            <div class="card mb-4 py-3 border-left-danger">
+                <div class="card-body">
+                  Отсутствует ключ авторизации от Coggle.it.
+                  Пройдите по этой ссылке для его получения.
+                </div>
+              </div>
+
+        {% endif %}
 
         <form action="{% url 'add_confirm' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
@@ -22,6 +31,11 @@
                 <div class="col-sm-9">
                     <input name="title" type="text" class="form-control"
                            id="title-text" placeholder="Введите название">
+                {% if form.title.errors %}
+                  <div class="text-center text-danger small">
+                    <p>{{ form.title.errors }}</p>
+                  </div>
+                {% endif %}
                 </div>
             </div>
 
@@ -30,22 +44,37 @@
                 <div class="col-sm-9">
                     <textarea name="about" class="form-control" id="about-text"
                           placeholder="Введите описание работы"></textarea>
+                {% if form.about.errors %}
+                    <div class="text-center text-danger small">
+                        <p>{{ form.about.errors }}</p>
+                    </div>
+                {% endif %}
                 </div>
             </div>
 
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label" for="true-text">Ссылка на правильную работу:</label>
                 <div class="col-sm-9">
-                    <input name="true_work" type="text" class="form-control" id="true-text"
+                    <input name="correct_work" type="text" class="form-control" id="true-text"
                            placeholder="Введите ссылку">
+                    {% if form.correct_work.errors %}
+                        <div class="text-center text-danger small">
+                            <p>{{ form.correct_work.errors }}</p>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
 
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label" for="keys-text">Ключевые текстовые значения:</label>
                 <div class="col-sm-9">
-                    <textarea name="keys" class="form-control" id="keys-text"
-                              placeholder="Введите ключи через запятую"></textarea>
+                    <textarea name="text_keys" class="form-control" id="keys-text"
+                              placeholder="Введите ключевые значения через запятую"></textarea>
+                    {% if form.text_keys.errors %}
+                        <div class="text-center text-danger small">
+                            <p>{{ form.text_keys.errors }}</p>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
 
@@ -58,38 +87,63 @@
                             <label class="custom-file-label" for="inputGroupFile01">Выберите файл</label>
                         </div>
                     </div>
+                    {% if form.file_table.errors %}
+                        <div class="text-center text-danger small">
+                            <p>{{ form.file_table.errors }}</p>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
 
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label" for="table_name">Название таблицы</label>
                 <div class="col-sm-9">
-                    <input name="table" type="text" id="table_name" class="form-control"
+                    <input name="table_name" type="text" id="table_name" class="form-control"
                            placeholder="Введите название таблицы (по умолчанию - первая таблица)">
+                    {% if form.table_name.errors %}
+                        <div class="text-center text-danger small">
+                            <p>{{ form.table_name.errors }}</p>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
 
              <div class="form-group row">
                 <label class="col-sm-3 col-form-label" for="row">Начальная строка</label>
                 <div class="col-sm-9">
-                    <input name="row" type="text" id="row" class="form-control"
+                    <input name="start_row" type="text" id="row" class="form-control"
                            placeholder="Введите начальную строку (по умолчанию - первая строка)">
+                    {% if form.start_row.errors %}
+                        <div class="text-center text-danger small">
+                            <p>{{ form.start_row.errors }}</p>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
 
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label" for="names_column">Столбец</label>
                 <div class="col-sm-9">
-                    <input name="names" type="text" id="names_column" class="form-control"
+                    <input name="names_column" type="text" id="names_column" class="form-control"
                            placeholder="Введите столбец имен (по умолчанию - столбец 'A')">
+                    {% if form.names_column.errors %}
+                        <div class="text-center text-danger small">
+                            <p>{{ form.names_column.errors }}</p>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
 
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label" for="links_column">Столбец ссылок</label>
                 <div class="col-sm-9">
-                    <input name="links" type="text" id="links_column" class="form-control"
+                    <input name="links_column" type="text" id="links_column" class="form-control"
                            placeholder="Введите столбец ссылок (по умолчанию - столбец 'B')">
+                    {% if form.links_column.errors %}
+                        <div class="text-center text-danger small">
+                            <p>{{ form.links_column.errors }}</p>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
             <button type="submit" class="btn btn-primary mt-2">Сохранить</button>

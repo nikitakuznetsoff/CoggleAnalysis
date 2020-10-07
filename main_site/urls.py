@@ -19,8 +19,8 @@ urlpatterns = [
     path('<int:task_id>/delete/<int:homework_id>/', views.homework_delete_page, name='homework_delete_page'),
     path('<int:task_id>/delete/<int:homework_id>/confirm', views.homework_delete_confirm, name='homework_delete_confirm'),
 
-    path('add/', views.AddView.as_view(), name='add'),
-    path('add/confirm', views.add_confirm, name='add_confirm'),
+    path('add/', views.task_add, name='add'),
+    path('add/confirm', views.task_add_confirm, name='add_confirm'),
 
     path('change/', views.change, name='change'),
     path('change/<int:task_id>/', views.change_task, name='change_task'),

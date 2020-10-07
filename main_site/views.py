@@ -18,19 +18,7 @@ from requests.auth import HTTPBasicAuth
 from modules import checks, coggle, readers, analysis, text_search
 from .models import UserData, Task, Homework
 
-
-# def registration(request):
-#     form = UserCreationForm(request.POST)
-#     if form.is_valid():
-#         form.save()
-#         username = form.cleaned_data.get('username')
-#         password = form.cleaned_data.get('password1')
-#         user = authenticate(username=username, password=password)
-#         login(request, user)
-#         return redirect('index')
-#     # else:
-#     #     form = UserCreationForm()
-#     return render(request, 'registration/register.html', {'form': form})
+from .forms import TaskForm
 
 
 @login_required(login_url='/accounts/login/')
@@ -148,134 +136,115 @@ def homework_delete_confirm(request, task_id, homework_id):
 ########################
 
 
-class AddView(LoginRequiredMixin, generic.ListView):
-    model = UserData
-    template_name = 'main_site/actions/add.html'
+@login_required(login_url='/accounts/login/')
+def task_add(request):
+    if coggle.coggle_user.access_token == "":
+        context = {'coggle_key': True}
+    else:
+        context = {'coggle_key': False}
+    return render(request, 'main_site/actions/add.html', context)
 
 
 @login_required(login_url='/accounts/login/')
-def add_confirm(request):
-    try:
-        title_new = request.POST['title']
-        about_new = request.POST['about']
-        file = request.FILES['file_table']
-        table_name = request.POST['table']
-
-        true_work = request.POST['true_work']
-        true_work_link = readers.link_to_id(true_work)
-
-        keys = request.POST['keys']
-        names_column = request.POST['names']
-        links_column = request.POST['links']
-        start_row = request.POST['row']
-
-    except Exception as e:
-        print(e)
-        context = {
-            'title': "Создание задания",
-            'text': "Произошла ошибка при создании задания"
-        }
-        return render(request, 'main_site/actions/error.html', context)
-    else:
-        try:
-            # Проверка наличия токена для анализа
+def task_add_confirm(request):
+    if request.method == 'POST':
+        task_form = TaskForm(request.POST, request.FILES)
+        if task_form.is_valid():
             if coggle.coggle_user.access_token == "":
-                coggle.coggle_user.authorization()
-                # return render(request, 'main_site/actions/add.html')
-        except Exception:
-            context = {
-                'title': "Создание задания",
-                'text': "Произошла ошибка при создании задания"
-            }
-            return render(request, 'main_site/actions/error.html', context)
+                try:
+                    coggle.coggle_user.authorization()
+                    return render(request, 'main_site/actions/add.html', {'form': task_form})
+                except Exception as e:
+                    print(e)
+                    context = {
+                        'title': "Создание задания",
+                        'text': "Произошла ошибка при получении ключа авторизации"
+                    }
+                    return render(request, 'main_site/actions/error.html', context)
 
-        wb = load_workbook(filename=file, read_only=True)
-        # Проверка наличия заданной таблицы в Excel файле
-        if table_name != '':
-            if not checks.check_correct_tablename(wb, table_name):
+            file_table = request.FILES['file_table']
+            # Загрузка нужной таблицы
+            workbook = load_workbook(filename=file_table, read_only=True)
+            data = task_form.cleaned_data
+            # Проверка наличия заданной таблицы в Excel файле
+            if data['table_name'] != '':
+                if not checks.check_correct_tablename(workbook, data['table_name']):
+                    context = {
+                        'title': "Создание задания",
+                        'text': "Заданная таблица отсутствует в файле "
+                    }
+                    return render(request, 'main_site/actions/error.html', context)
+
+            # Проверка формата заданных ячеек
+            if data['names_column'] != '' and not checks.column_name_is_correct(data['names_column']) \
+                    or data['links_column'] != '' and not checks.column_name_is_correct(data['links_column']) \
+                    or data['start_row'] != '' and not checks.column_name_is_correct(data['start_row']):
                 context = {
                     'title': "Создание задания",
-                    'text': "Произошла ошибка при создании задания"
+                    'text': "Ошибка в формате столбцов / ячеек"
                 }
                 return render(request, 'main_site/actions/error.html', context)
 
-        # Проверка формата заданных ячеек
-        if not checks.check_correct_column_name(names_column) \
-                or not checks.check_correct_column_name(links_column) \
-                or not checks.check_correct_row_name(start_row):
+            # Создание массива ключевых значений
+            arr_keys = data['text_keys'].split(",")
+
+            if data['table_name'] != '':
+                sheet = workbook[data['table_name']]
+            else:
+                sheet = workbook[workbook.sheetnames[0]]
+
+            print("[SHEET] " + str(sheet))
+            # Чтение информации из таблицы
+            arr = readers.read_mindmap_ids(sheet, data['names_column'],
+                                           data['links_column'], data['start_row'])
+            print("IDs: " + str(arr))
+            # Получение массива коэффициентов структурного сходства
+            arr_with_coef = analysis.mindmap_analysis(arr[1], readers.link_to_id(data['correct_work']))
+            print("Coefs: " + str(arr_with_coef))
+
+            # Массив текстов каждой интеллект карты
+            # arr_text = analysis.take_text(arr[1])
+
+            sim_arr = []
+            # # Массив с вычисленными сходствами текстовых составляющих
+            # if len(arr_keys) > 0:
+            #     sim_arr = text_search.initialization(arr_keys, arr_text)
+            # else:
+            #     sim_arr = [0] * len(arr_keys)
+
+            # Создание объекта домашнего задания для текущего пользователя
+            curr_data = UserData.objects.get(user=request.user)
+            curr_task = curr_data.task_set.create(title=data['title'], about=data['about'])
+            print("[CREATING TASK] TITLE: " + data['title'] + "; ABOUT: " + data['about'])
+
+            # Создание работ
+            for i in range(0, len(arr[0])):
+                # Проверка на считывание лишней информации
+                if arr[0][i] is None:
+                    break
+                if data['correct_work'] == '':
+                    coef = round(arr_with_coef[1][i] * 100)
+                else:
+                    coef = round(arr_with_coef[i] * 100)
+
+                if len(sim_arr) > 0:
+                    sim = round(sim_arr[i] * 100)
+                else:
+                    sim = -1
+                print("[ADDING HW] NAME: " + arr[0][i])
+                curr_task.homework_set.create(name=arr[0][i], link=arr[1][i],
+                                              similarity=coef, plagiarism=sim)
             context = {
                 'title': "Создание задания",
-                'text': "Ошибка в формате столбцов / ячеек"
+                'text': "Задание успешно добавлено"
             }
-            return render(request, 'main_site/actions/error.html', context)
-
-        # try:
-        #     # Проверка наличия токена для анализа
-        #     if coggle.coggle_user.access_token == "":
-        #         coggle.coggle_user.authorization()
-        #         return render(request, 'main_site/actions/add.html')
-        # except Exception:
-        #     context = {
-        #         'title': "Создание задания",
-        #         'text': "Произошла ошибка при создании задания"
-        #     }
-        #     return render(request, 'main_site/actions/error.html', context)
-
-        # Создание объекта домашнего задания для текущего пользователя
-        curr_data = UserData.objects.get(user=request.user)
-        curr_task = curr_data.task_set.create(title=title_new, about=about_new)
-        print("[CREATING TASK] TITLE: " + title_new + "; ABOUT: " + about_new)
-
-        # Создание массива ключевых значений
-        arr_keys = keys.split(",")
-
-        # Загрузка нужной таблицы
-        wb = load_workbook(file)
-        if table_name != '':
-            sheet = wb[table_name]
+            return render(request, 'main_site/actions/done.html', context)
         else:
-            sheet = wb[wb.sheetnames[0]]
+            return render(request, 'main_site/actions/add.html', {'form': task_form})
 
-        print("[SHEET] " + str(sheet))
-        # Чтение информации из таблицы
-        arr = readers.read_mindmap_ids(sheet, names_column, links_column, start_row)
-        print("IDs: " + str(arr))
-        # Получение массива коэффициентов структурного сходства
-        arr_with_coef = analysis.mindmap_analysis(arr[1], true_work_link)
-
-        # Массив текстов каждой интеллект карты
-        # arr_text = analysis.take_text(arr[1])
-
-        sim_arr = []
-        # # Массив с вычисленными сходствами текстовых составляющих
-        # if len(arr_keys) > 0:
-        #     sim_arr = text_search.initialization(arr_keys, arr_text)
-        # else:
-        #     sim_arr = [0] * len(arr_keys)
-
-        # Создание работ
-        for i in range(0, len(arr[0])):
-            # Проверка на считывание лишней информации
-            if arr[0][i] is None:
-                break
-            if true_work_link == "":
-                coef = round(arr_with_coef[1][i] * 100)
-            else:
-                coef = round(arr_with_coef[i] * 100)
-
-            if len(sim_arr) > 0:
-                sim = round(sim_arr[i] * 100)
-            else:
-                sim = -1
-            print("[ADDING HW] NAME: " + arr[0][i])
-            curr_task.homework_set.create(name=arr[0][i], link=arr[1][i],
-                                          similarity=coef, plagiarism=sim)
-
-        context = {
-            'title': "Создание задания",
-            'text': "Задание успешно добавлено"
-        }
-        return render(request, 'main_site/actions/done.html', context)
+    else:
+        task_form = TaskForm()
+    return render(request, 'main_site/actions/add.html', {'form': task_form})
 
 
 ########################
@@ -294,7 +263,7 @@ def change(request):
 def change_task(request, task_id):
     task = Task.objects.get(pk=task_id)
     context = {'task': task,
-               'task_id' : task_id}
+               'task_id': task_id}
     return render(request, 'main_site/actions/change_confirm.html', context)
 
 

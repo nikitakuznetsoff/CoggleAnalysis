@@ -21,7 +21,6 @@ class Coggle:
         resp_auth = requests.get(self.url_base + 'dialog/authorize/', params=params)
         webbrowser.open_new_tab(resp_auth.url)
 
-
     def authorization_token(self):
         code = requests.get('code')
         params = {"code": code, "grant_type": "authorization_code", "redirect_uri": self.redirect_uri}

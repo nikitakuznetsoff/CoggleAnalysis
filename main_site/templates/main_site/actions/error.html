@@ -2,9 +2,10 @@
 
 {% block site_title %}Ошибка{% endblock %}
 
+{% block page_title %}{{ title }}{% endblock %}
+
 {% block content %}
     <div class="container mt-3">
-        <p class="text-center font-weight-bolder mt-4" >{{ title }}</p>
         <div class="alert alert-danger">
             {{ text }}
         </div>

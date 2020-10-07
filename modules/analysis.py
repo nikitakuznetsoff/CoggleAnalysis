@@ -13,7 +13,7 @@ def mindmap_analysis(arr_ids, true_id):
             for i in range(0, len(arr_diagrams)):
                 if true_diagram == arr_diagrams[i]:
                     mass.append(1)
-                elif (arr_diagrams[i] == None) or (true_diagram == None):
+                elif arr_diagrams[i] is None or true_diagram is None:
                     mass.append(None)
                 else:
                     mass.append(algorithm.max_common_substree_rooted(true_diagram, arr_diagrams[i]))

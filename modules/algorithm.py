@@ -10,7 +10,7 @@ def subtree_by_node(graph, curr_node):
     new_graph = nx.DiGraph()
     new_graph.add_node(curr_node)
     for node in graph.neighbors(curr_node):
-        new_graph.add_node(node, text=graph.node[node]['text'])
+        new_graph.add_node(node, text=graph.nodes[node]['text'])
         #new_graph.node[node]['text'] = graph.node[node]['text']
         new_graph.add_edge(curr_node, node)
         subtree_by_node_rec(graph, node, new_graph)
@@ -19,7 +19,7 @@ def subtree_by_node(graph, curr_node):
 
 def subtree_by_node_rec(graph, curr_node, new_graph):
     for node in graph.neighbors(curr_node):
-        new_graph.add_node(node, text=graph.node[node]['text'])
+        new_graph.add_node(node, text=graph.nodes[node]['text'])
         new_graph.add_edge(curr_node, node)
         subtree_by_node_rec(graph, node, new_graph)
 
@@ -32,13 +32,13 @@ def make_graph(graph, root, nd):
     curr_node = list_nodes[list_nodes.index(root)]
     for obj in list_nodes:
         if obj == curr_node:
-            new_graph.node[obj]['text'] = graph.node[obj]['text']
+            new_graph.nodes[obj]['text'] = graph.nodes[obj]['text']
             continue
         new_graph.add_edge(curr_node, obj)
         curr_node = obj
         # obj = присваиваем метрики каждой вершине графа new_graph аналошичных вершин из graph
         # new_graph[curr_node][obj]['colour'] = graph[curr_node][obj]['colour']
-        new_graph.node[obj]['text'] = graph.node[obj]['text']
+        new_graph.nodes[obj]['text'] = graph.nodes[obj]['text']
     return new_graph
 
 
@@ -48,7 +48,7 @@ def max_count_isom_nodes(G, H):
     mass_G = list(G.nodes())
     mass_H = list(H.nodes())
     for i in range(len(mass_G)):
-        if G.node[mass_G[i]]['text'] == H.node[mass_H[i]]['text']:
+        if G.nodes[mass_G[i]]['text'] == H.nodes[mass_H[i]]['text']:
             count += 1
     return count
 

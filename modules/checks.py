@@ -18,7 +18,7 @@ def check_correct_cellname(name):
 
 
 # Проверка на кооректный формат ячейки для начала считывания
-def check_correct_column_name(name):
+def column_name_is_correct(name):
     if name == "":
         return True
     if name.isupper():

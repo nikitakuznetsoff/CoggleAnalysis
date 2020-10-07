@@ -21,32 +21,59 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container mt-3">
+    <div class="container-fluid">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{% url 'index' %}">Главная</a></li>
             <li class="breadcrumb-item active">Список работ</li>
             <li class="breadcrumb-item active" aria-current="page">Описание</li>
         </ol>
 
-        <table class="table">
-            <tbody>
-                <tr href="#">
-                    <th scope="row">Имя ученика</th>
-                    <td>{{ homework.name }}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Ссылка на работу</th>
-                    <td><a href="https://coggle.it/diagram/{{ homework.link }}">Ссылка</a></td>
-                </tr>
-                <tr>
-                    <th scope="row">Оценка структурного сходства</th>
-                    <td>{{ homework.similarity }} %</td>
-                </tr>
-                <tr>
-                    <th scope="row">Оценка сходства текстового содержания</th>
-                    <td>{{ homework.plagiarism }} %</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="row">
+            <div class="col-xl-6 col-lg-6">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                      <h6 class="m-0 font-weight-bold text-primary">Информация</h6>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <tbody>
+                                <tr href="#">
+                                    <th scope="row">Имя ученика</th>
+                                    <td>{{ homework.name }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Ссылка на работу</th>
+                                    <td><a href="https://coggle.it/diagram/{{ homework.link }}">Ссылка</a></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Оценка структурного сходства</th>
+                                    <td>{{ homework.similarity }} %</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Оценка сходства текстового содержания</th>
+                                    <td>{{ homework.plagiarism }} %</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Donut Chart -->
+            <div class="col-xl-6 col-lg-6">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Метрики</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+
+
+                </div>
+              </div>
+            </div>
+      </div>
     </div>
 {% endblock %}

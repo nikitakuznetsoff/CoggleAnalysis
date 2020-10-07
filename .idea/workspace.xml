@@ -33,9 +33,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="165fd791-ffc8-4ce5-b9a9-e5ad2d057dbf" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/main_site/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/registration/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/registration/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mind_maps_analysis/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/mind_maps_analysis/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/templates/registration/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/registration/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_site/templates/main_site/actions/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/templates/main_site/actions/add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_site/templates/main_site/actions/change_confirm.html" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/templates/main_site/actions/change_confirm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_site/templates/main_site/actions/error.html" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/templates/main_site/actions/error.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_site/templates/main_site/actions/homeworks/base_hw.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_site/templates/main_site/actions/homeworks/homework.html" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/templates/main_site/actions/homeworks/homework.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_site/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_site/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/algorithm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/analysis.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/checks.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/checks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/coggle.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/coggle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/graph_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/graph_functions.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -299,7 +311,8 @@
       <workItem from="1601721982241" duration="15149000" />
       <workItem from="1601838103589" duration="4466000" />
       <workItem from="1601845727451" duration="678000" />
-      <workItem from="1601846514883" duration="16454000" />
+      <workItem from="1601846514883" duration="30637000" />
+      <workItem from="1602089537611" duration="2293000" />
     </task>
     <servers />
   </component>
@@ -350,41 +363,41 @@
       <screen x="64" y="27" width="1472" height="837" />
     </state>
     <state x="586" y="225" width="424" height="496" key="FileChooserDialogImpl/64.27.1472.837@64.27.1472.837" timestamp="1601813500423" />
-    <state width="1426" height="309" key="GridCell.Tab.0.bottom" timestamp="1601902440801">
+    <state width="1426" height="309" key="GridCell.Tab.0.bottom" timestamp="1602091267123">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
-    <state width="1426" height="309" key="GridCell.Tab.0.bottom/64.27.1472.837@64.27.1472.837" timestamp="1601902440801" />
-    <state width="1426" height="309" key="GridCell.Tab.0.center" timestamp="1601902440800">
+    <state width="1426" height="309" key="GridCell.Tab.0.bottom/64.27.1472.837@64.27.1472.837" timestamp="1602091267123" />
+    <state width="1426" height="309" key="GridCell.Tab.0.center" timestamp="1602091267121">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
-    <state width="1426" height="309" key="GridCell.Tab.0.center/64.27.1472.837@64.27.1472.837" timestamp="1601902440800" />
-    <state width="1426" height="309" key="GridCell.Tab.0.left" timestamp="1601902440799">
+    <state width="1426" height="309" key="GridCell.Tab.0.center/64.27.1472.837@64.27.1472.837" timestamp="1602091267121" />
+    <state width="1426" height="309" key="GridCell.Tab.0.left" timestamp="1602091267120">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
-    <state width="1426" height="309" key="GridCell.Tab.0.left/64.27.1472.837@64.27.1472.837" timestamp="1601902440799" />
-    <state width="1426" height="309" key="GridCell.Tab.0.right" timestamp="1601902440801">
+    <state width="1426" height="309" key="GridCell.Tab.0.left/64.27.1472.837@64.27.1472.837" timestamp="1602091267120" />
+    <state width="1426" height="309" key="GridCell.Tab.0.right" timestamp="1602091267122">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
-    <state width="1426" height="309" key="GridCell.Tab.0.right/64.27.1472.837@64.27.1472.837" timestamp="1601902440801" />
+    <state width="1426" height="309" key="GridCell.Tab.0.right/64.27.1472.837@64.27.1472.837" timestamp="1602091267122" />
     <state x="520" y="112" width="1016" height="742" key="SettingsEditor" timestamp="1599670195333">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
     <state x="520" y="112" width="1016" height="742" key="SettingsEditor/64.27.1472.837@64.27.1472.837" timestamp="1599670195333" />
-    <state x="584" y="361" width="432" height="182" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1601470716417">
+    <state x="584" y="356" width="432" height="182" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1602013246371">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
-    <state x="584" y="361" width="432" height="182" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/64.27.1472.837@64.27.1472.837" timestamp="1601470716417" />
-    <state x="489" y="51" width="621" height="783" key="find.popup" timestamp="1601904410988">
+    <state x="584" y="356" width="432" height="182" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/64.27.1472.837@64.27.1472.837" timestamp="1602013246371" />
+    <state x="489" y="51" width="621" height="783" key="find.popup" timestamp="1602012227120">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
-    <state x="489" y="51" width="621" height="783" key="find.popup/64.27.1472.837@64.27.1472.837" timestamp="1601904410988" />
+    <state x="489" y="51" width="621" height="783" key="find.popup/64.27.1472.837@64.27.1472.837" timestamp="1602012227120" />
     <state x="634" y="231" width="327" height="441" key="refactoring.ChangeSignatureDialog" timestamp="1601405973901">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
     <state x="634" y="231" width="327" height="441" key="refactoring.ChangeSignatureDialog/64.27.1472.837@64.27.1472.837" timestamp="1601405973901" />
-    <state x="463" y="185" width="672" height="678" key="search.everywhere.popup" timestamp="1601847392354">
+    <state x="463" y="185" width="672" height="678" key="search.everywhere.popup" timestamp="1601993549356">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
-    <state x="463" y="185" width="672" height="678" key="search.everywhere.popup/64.27.1472.837@64.27.1472.837" timestamp="1601847392354" />
+    <state x="463" y="185" width="672" height="678" key="search.everywhere.popup/64.27.1472.837@64.27.1472.837" timestamp="1601993549356" />
   </component>
 </project>
