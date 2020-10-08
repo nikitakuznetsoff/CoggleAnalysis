@@ -33,16 +33,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="165fd791-ffc8-4ce5-b9a9-e5ad2d057dbf" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/main_site/views/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main_site/views/views_homeworks.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main_site/views/views_services.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_site/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/views/views_tasks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/algorithm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/analysis.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/analysis_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/analysis_functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/coggle.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/model/coggle.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/miro.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/model/miro.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_site/static/main_site/js/demo/chart-area-demo.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_site/static/main_site/js/demo/chart-bar-demo.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_site/static/main_site/js/demo/chart-pie-demo.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_site/static/main_site/js/demo/datatables-demo.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_site/templates/main_site/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/templates/main_site/base.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -308,7 +304,7 @@
       <workItem from="1601845727451" duration="678000" />
       <workItem from="1601846514883" duration="30637000" />
       <workItem from="1602089537611" duration="20751000" />
-      <workItem from="1602174156674" duration="2662000" />
+      <workItem from="1602174156674" duration="3281000" />
     </task>
     <servers />
   </component>
@@ -383,10 +379,10 @@
       <screen x="64" y="27" width="1472" height="837" />
     </state>
     <state x="584" y="356" width="432" height="182" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/64.27.1472.837@64.27.1472.837" timestamp="1602013246371" />
-    <state x="489" y="51" width="621" height="783" key="find.popup" timestamp="1602176026881">
+    <state x="489" y="51" width="621" height="783" key="find.popup" timestamp="1602177445086">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
-    <state x="489" y="51" width="621" height="783" key="find.popup/64.27.1472.837@64.27.1472.837" timestamp="1602176026881" />
+    <state x="489" y="51" width="621" height="783" key="find.popup/64.27.1472.837@64.27.1472.837" timestamp="1602177445086" />
     <state x="634" y="231" width="327" height="441" key="refactoring.ChangeSignatureDialog" timestamp="1601405973901">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
