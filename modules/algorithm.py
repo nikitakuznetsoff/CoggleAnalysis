@@ -25,7 +25,7 @@ def subtree_by_node_rec(graph, curr_node, new_graph):
 
 
 # Создание графа от заднного корня до конкретной вершины
-def make_graph(graph, root, nd):
+def make_graph(graph, root, nd) -> nx.DiGraph:
     list_nodes = nx.shortest_path(graph, source=root, target=nd)
     new_graph = nx.DiGraph()
     new_graph.add_nodes_from(list_nodes, text='')
@@ -43,7 +43,7 @@ def make_graph(graph, root, nd):
 
 
 # Масимальное количество схожих вершин в двух одинаковых по длине графах
-def max_count_isom_nodes(G, H):
+def max_count_isom_nodes(G, H) -> int:
     count = 0
     mass_G = list(G.nodes())
     mass_H = list(H.nodes())
@@ -54,7 +54,7 @@ def max_count_isom_nodes(G, H):
 
 
 # Поиск максимального общего дерева
-def max_isom_substree(G, H):
+def max_isom_substree(G, H) -> int:
     # gm_one = isomorphism.DiGraphMatcher(G, H)
     # gm_two = isomorphism.DiGraphMatcher(H, G)
     nm = isomorphism.categorical_node_match('text', '')

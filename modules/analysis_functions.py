@@ -54,7 +54,7 @@ def images_count_children(nodes):
 
 
 # Средняя длина текста
-def avg_node_text_len(nodes, count_nodes):
+def avg_node_text_len(nodes, count_nodes) -> float:
     len_text = 0
     if nodes:
         for obj in nodes:
@@ -83,18 +83,17 @@ def avg_node_text_len_children(nodes):
 
 
 # Список метрик
-def metrics(nodes, graph):
-    met = {"max_height": 0, "count_nodes": 0, "count_first_layer_branches": 0,
-           "images": 0, "avg_node_text_len": 0}
-    met["max_height"] = max_height(nodes)
-    met["count_nodes"] = count_nodes(graph)
-    met["count_first_layer_branches"] = count_first_layer_branches(nodes)
-    met["images"] = images_count(nodes)
-    met["avg_node_text_len"] = avg_node_text_len(nodes, met["count_nodes"])
-    return met
+def calculate_metrics(nodes, graph) -> dict:
+    metrics = dict()
+    metrics["max_height"] = max_height(nodes)
+    metrics["count_nodes"] = count_nodes(graph)
+    metrics["count_first_layer_branches"] = count_first_layer_branches(nodes)
+    metrics["images"] = images_count(nodes)
+    metrics["avg_node_text_len"] = avg_node_text_len(nodes, metrics["count_nodes"])
+    return metrics
 
 
 # Подсчет меры сходства для подструктурного подхода
-def similarity_sub_algo(max_count, graph_1, graph_2):
+def similarity_sub_algo(max_count, graph_1, graph_2) -> float:
     max_count -= 1
     return (max_count * max_count) / (count_nodes(graph_1) * count_nodes(graph_2))

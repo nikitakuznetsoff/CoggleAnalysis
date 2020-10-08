@@ -1,5 +1,4 @@
-from openpyxl import load_workbook
-from modules import readers, coggle, algorithm
+from modules import algorithm
 from modules import graph_functions as gf
 
 
@@ -56,7 +55,7 @@ def create_arr_diagrams(arr, service):
 
 
 def information_for_algo(id_diagram, service):
-    arr = {'diagram': '', 'graph': ''}
+    arr = dict()
     arr['diagram'] = service.nodes(id_diagram)
     arr['graph'] = gf.transform_into_graph(arr['diagram'])
     return arr
