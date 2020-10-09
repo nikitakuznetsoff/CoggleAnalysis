@@ -33,23 +33,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="165fd791-ffc8-4ce5-b9a9-e5ad2d057dbf" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/main_site/migrations/0002_auto_20201008_2312.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main_site/models/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main_site/models/algo.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main_site/models/mindmap.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_site/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_site/migrations/0002_auto_20201007_1954.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_site/migrations/0003_auto_20201007_1954.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_site/migrations/0004_auto_20201007_1956.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_site/migrations/0005_auto_20201007_1956.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_site/model/coggle.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/models/coggle.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_site/model/miro.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/models/miro.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_site/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/models/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_site/views/views_services.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/views/views_services.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_site/views/views_tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/views/views_tasks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/analysis.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/readers.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/readers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_site/templates/main_site/actions/homeworks/homework.html" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/templates/main_site/actions/homeworks/homework.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mind_maps_analysis/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/mind_maps_analysis/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -315,7 +301,7 @@
       <workItem from="1601845727451" duration="678000" />
       <workItem from="1601846514883" duration="30637000" />
       <workItem from="1602089537611" duration="20751000" />
-      <workItem from="1602174156674" duration="24263000" />
+      <workItem from="1602174156674" duration="24970000" />
     </task>
     <servers />
   </component>

@@ -76,27 +76,27 @@ WSGI_APPLICATION = 'mind_maps_analysis.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mindmaps',
-        'USER': 'espero',
-        'PASSWORD': 'pass',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-    }
-}
-
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'deo0rl6i63qi4p',
-#         'USER': 'iucraigpzqykyi',
-#         'PASSWORD': '73044b58709b7552c4a1b033df5327924e29fd6765ad0d42beb6233c174a8524',
-#         'HOST': 'ec2-174-129-253-27.compute-1.amazonaws.com',
+#         'NAME': 'mindmaps',
+#         'USER': 'espero',
+#         'PASSWORD': 'pass',
+#         'HOST': '127.0.0.1',
 #         'PORT': '5432',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'deo0rl6i63qi4p',
+        'USER': 'iucraigpzqykyi',
+        'PASSWORD': '73044b58709b7552c4a1b033df5327924e29fd6765ad0d42beb6233c174a8524',
+        'HOST': 'ec2-174-129-253-27.compute-1.amazonaws.com',
+        'PORT': '5432',
+    }
+}
 
 
 # Password validation

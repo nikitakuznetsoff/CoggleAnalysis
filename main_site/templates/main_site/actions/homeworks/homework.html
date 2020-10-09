@@ -53,11 +53,44 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-
-
+                    <div class="card-body">
+                        <table class="table">
+                            <tbody>
+                                <tr href="#">
+                                    <th scope="row">Количество вершин дерева</th>
+                                    <td>{{ homework.count_nodes }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Количество веток от корневой вершины</th>
+                                    <td>{{ homework.count_first_layer_branches }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Среднее количество слов на вершине</th>
+                                    <td>{{ homework.average_node_text }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Максимальная высота дерева</th>
+                                    <td>{{ homework.max_height }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <hr>
+                    </div>
                 </div>
               </div>
             </div>
-      </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Анализ текстового содержания</h6>
+                    </div>
+                    <div class="card-body">
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}
