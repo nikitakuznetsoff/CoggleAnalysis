@@ -6,7 +6,6 @@ def mindmap_analysis(identificators, correct_mindmap_id, service):
     arr_diagrams = create_arr_diagrams(identificators, service)
     if correct_mindmap_id != '':
         true_diagram = create_diagram(correct_mindmap_id, service)
-        #mass = [0] * len(arr_diagrams)
         mass = []
         if true_diagram is not None:
             for i in range(0, len(arr_diagrams)):
@@ -19,11 +18,9 @@ def mindmap_analysis(identificators, correct_mindmap_id, service):
         return mass
 
     else:
-        #mass = [[0] * len(arr_diagrams)] * len(arr_diagrams)
         mass = []
         for i in range(0, len(arr_diagrams)):
             arr = []
-            mass.append(arr)
             for j in range(0, len(arr_diagrams)):
                 if arr_diagrams[i] == arr_diagrams[j]:
                     mass[i].append(1)
@@ -31,6 +28,7 @@ def mindmap_analysis(identificators, correct_mindmap_id, service):
                     mass[i].append(None)
                 else:
                     mass[i].append(algorithm.max_common_substree_rooted(arr_diagrams[i], arr_diagrams[j]))
+            mass.append(arr)
         return mass
 
 

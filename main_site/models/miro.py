@@ -1,5 +1,6 @@
 import requests
 import webbrowser
+import json
 
 
 # Класс для основных операций с API
@@ -19,8 +20,25 @@ class Miro:
             'client_id': self.client_id,
             'redirect_uri': self.redirect_uri
         }
-        resp_auth = requests.get(self.url_base + 'oauth/authorize/', params=params)
+        resp_auth = requests.get(
+            url=self.url_base + 'oauth/authorize/',
+            params=params
+        )
         webbrowser.open_new_tab(resp_auth.url)
+
+    def nodes(self, id_diagram):
+        params = {'access_token': self.access_token}
+        url_diagram = 'https://api.miro.com/v1/boards/'
+        nodes_info = requests.get(
+            url=self.url_base + url_diagram + id_diagram + "/widgets/",
+            params=params
+        )
+        nodes = json.loads(nodes_info.text)
+        print(nodes)
+        return nodes
+
+    def __str__(self):
+        return "Miro"
 
 
 APP_NAME = "cognitive-maps-parser"

@@ -21,25 +21,36 @@ class Coggle:
             'client_id': self.client_id,
             'redirect_uri': self.redirect_uri
         }
-        resp_auth = requests.get(self.url_base + 'dialog/authorize/', params=params)
+        resp_auth = requests.get(
+            url=self.url_base + 'dialog/authorize/',
+            params=params
+        )
         webbrowser.open_new_tab(resp_auth.url)
 
     # Получение информации о всей диаграмме
     def diagram(self, id_diagram):
         params = {"access_token": self.access_token}
         url_diagram = "api/1/diagrams/"
-        information_diagram = requests.get(self.url_base + url_diagram + id_diagram, params=params)
-        diagram = json.loads(information_diagram.text)
+        diagram_info = requests.get(
+            url=self.url_base + url_diagram + id_diagram,
+            params=params
+        )
+        diagram = json.loads(diagram_info.text)
         return diagram
 
     # Получение информации о вершинах
     def nodes(self, id_diagram):
         params = {"access_token": self.access_token}
         url_diagram = "api/1/diagrams/"
-        information_nodes = requests.get(self.url_base + url_diagram + id_diagram + "/nodes", params=params)
-        nodes = json.loads(information_nodes.text)
-        print(nodes)
+        nodes_info = requests.get(
+            url=self.url_base + url_diagram + id_diagram + "/nodes",
+            params=params
+        )
+        nodes = json.loads(nodes_info.text)
         return nodes
+
+    def __str__(self):
+        return "Coggle"
 
 
 APP_NAME = "CourseWork"

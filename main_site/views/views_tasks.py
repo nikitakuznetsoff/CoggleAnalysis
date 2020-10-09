@@ -1,9 +1,8 @@
-from main_site.models import UserData, Task
-from main_site.model import coggle, miro
+from main_site.models import UserData, Task, coggle, miro, MindMap
 from main_site.forms import TaskForm
 
 from openpyxl import load_workbook
-from modules import checks, readers, analysis
+from modules import checks, readers, analysis, analysis_functions
 
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
@@ -24,8 +23,8 @@ def index(request):
 def task_add(request):
     user_data = UserData.objects.get(user=request.user)
     context = dict()
-    context['coggle_key'] = user_data.coggle_key == "Undefined"
-    context['miro_key'] = user_data.miro_key == "Undefined"
+    context['coggle_key'] = user_data.coggle_key is None
+    context['miro_key'] = user_data.miro_key is None
     return render(request, 'main_site/actions/add.html', context)
 
 
@@ -37,7 +36,10 @@ def task_add_confirm(request):
             file_table = request.FILES['file_table']
             # Загрузка нужной таблицы
             workbook = load_workbook(filename=file_table, read_only=True)
+
+            # Вся информация из формы
             data = task_form.cleaned_data
+
             # Проверка наличия заданной таблицы в Excel файле
             if data['table_name'] != '':
                 if not checks.check_correct_tablename(workbook, data['table_name']):
@@ -60,6 +62,7 @@ def task_add_confirm(request):
             # Создание массива ключевых значений
             arr_keys = data['text_keys'].split(",")
 
+            # Получение нужной таблицы из файла
             if data['table_name'] != '':
                 sheet = workbook[data['table_name']]
             else:
@@ -67,17 +70,19 @@ def task_add_confirm(request):
             print("[SHEET] " + str(sheet))
 
             # Чтение информации из таблицы
-            arr = readers.read_mindmap_ids(
+            mindmaps_table_info = readers.read_mindmaps_info(
                 sheet=sheet,
                 names_column=data['names_column'],
                 links_column=data['links_column'],
                 start_row=data['start_row']
             )
-            print("IDs: " + str(arr))
+            print("Readed Names: " + str(mindmaps_table_info['names']))
+            print("Readed Links: " + str(mindmaps_table_info['mindmaps_id']))
 
+            # UserData текущего пользователя
             user_data = UserData.objects.get(user=request.user)
-            web_service_object = None
-            # Получение массива коэффициентов структурного сходства
+
+            # Инициализация объекта сервиса
             if data['service'] == "Coggle":
                 web_service_object = coggle.Coggle(
                     app_name=coggle.APP_NAME,
@@ -86,11 +91,7 @@ def task_add_confirm(request):
                     redirect_uri=coggle.REDIRECT_URI,
                     access_token=user_data.coggle_key
                 )
-                arr_with_coef = analysis.mindmap_analysis(
-                    identificators=arr[1],
-                    correct_mindmap_id=readers.link_to_id(data['correct_work']),
-                    service=web_service_object
-                )
+
             elif data['service'] == "Miro":
                 web_service_object = miro.Miro(
                     app_name=miro.APP_NAME,
@@ -99,11 +100,6 @@ def task_add_confirm(request):
                     redirect_uri=miro.REDIRECT_URI,
                     access_token=user_data.miro_key
                 )
-                arr_with_coef = analysis.mindmap_analysis(
-                    identificators=arr[1],
-                    correct_mindmap_id=readers.link_to_id(data['correct_work']),
-                    service=web_service_object
-                )
             else:
                 context = {
                     'title': "Создание задания",
@@ -111,43 +107,88 @@ def task_add_confirm(request):
                 }
                 return render(request, 'main_site/actions/error.html', context)
 
-            print("Coefs: " + str(arr_with_coef))
+            # Создание объекта MindMap для каждой работы и инициализация графа
+            mindmaps = []
+            for i in range(len(mindmaps_table_info['names'])):
+                mindmap = MindMap(
+                    name=mindmaps_table_info['names'][i],
+                    id=mindmaps_table_info['mindmaps_id'][i],
+                    service=str(web_service_object)
+                )
+                response = web_service_object.nodes(mindmap.id)
+                mindmap.create_graph_view(response)
+                mindmaps.append(mindmap)
+
+
+
+            # arr_with_coef = analysis.mindmap_analysis(
+            #     identificators=arr[1],
+            #     correct_mindmap_id=readers.link_to_id(data['correct_work']),
+            #     service=web_service_object
+            # )
+
+            # print("Coefs: " + str(arr_with_coef))
 
             # Массив текстов каждой интеллект карты
             # arr_text = analysis.take_text(arr[1])
 
-            sim_arr = []
+            # sim_arr = []
             # # Массив с вычисленными сходствами текстовых составляющих
             # if len(arr_keys) > 0:
             #     sim_arr = text_search.initialization(arr_keys, arr_text)
             # else:
             #     sim_arr = [0] * len(arr_keys)
+            #
+            # # Создание объекта домашнего задания для текущего пользователя
+            # curr_data = UserData.objects.get(user=request.user)
+            # curr_task = curr_data.task_set.create(title=data['title'], about=data['about'])
+            # print("[CREATING TASK] TITLE: " + data['title'] + "; ABOUT: " + data['about'])
+            #
+            # # Создание работ
+            # for i in range(0, len(arr[0])):
+            #     # Проверка на считывание лишней информации
+            #     if arr[0][i] is None:
+            #         break
+            #     if data['correct_work'] == '':
+            #         coef = round(arr_with_coef[1][i] * 100)
+            #     else:
+            #         coef = round(arr_with_coef[i] * 100)
+            #
+            #     if len(sim_arr) > 0:
+            #         sim = round(sim_arr[i] * 100)
+            #     else:
+            #         sim = -1
+            #     print("[ADDING HW] NAME: " + arr[0][i])
+            #
+            #     metrics = analysis_functions.calculate_metrics()
+            #     curr_task.homework_set.create(
+            #         name=arr[0][i],
+            #         link=arr[1][i],
+            #         similarity=coef,
+            #         plagiarism=sim,
+            #
+            #     )
 
-            # Создание объекта домашнего задания для текущего пользователя
-            curr_data = UserData.objects.get(user=request.user)
-            curr_task = curr_data.task_set.create(title=data['title'], about=data['about'])
+            # Создание объекта задания для текущего пользователя
+            curr_task = user_data.task_set.create(title=data['title'], about=data['about'])
             print("[CREATING TASK] TITLE: " + data['title'] + "; ABOUT: " + data['about'])
 
-            # Создание работ
-            for i in range(0, len(arr[0])):
-                # Проверка на считывание лишней информации
-                if arr[0][i] is None:
-                    break
-                if data['correct_work'] == '':
-                    coef = round(arr_with_coef[1][i] * 100)
-                else:
-                    coef = round(arr_with_coef[i] * 100)
-
-                if len(sim_arr) > 0:
-                    sim = round(sim_arr[i] * 100)
-                else:
-                    sim = -1
-                print("[ADDING HW] NAME: " + arr[0][i])
+            # Создание работ студентов
+            for mindmap in mindmaps:
+                metrics = mindmap.get_metrics()
                 curr_task.homework_set.create(
-                    name=arr[0][i],
-                    link=arr[1][i],
-                    similarity=coef,
-                    plagiarism=sim)
+                    name=mindmap.name,
+                    link=mindmap.id,
+                    service=mindmap.service,
+                    # Metrics
+                    similarity=mindmap.similarity,
+                    plagiarism=mindmap.plagiarism,
+                    count_nodes=metrics['count_nodes'],
+                    count_first_layer_branches=metrics['count_first_layer_branches'],
+                    average_node_text=metrics['avg_node_text_len'],
+                    max_height=metrics['max_height']
+                )
+
             context = {
                 'title': "Создание задания",
                 'text': "Задание успешно добавлено"

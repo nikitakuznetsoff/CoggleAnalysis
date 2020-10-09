@@ -33,12 +33,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="165fd791-ffc8-4ce5-b9a9-e5ad2d057dbf" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/main_site/migrations/0002_auto_20201008_2312.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main_site/models/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main_site/models/algo.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main_site/models/mindmap.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_site/static/main_site/js/demo/chart-area-demo.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_site/static/main_site/js/demo/chart-bar-demo.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_site/static/main_site/js/demo/chart-pie-demo.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_site/static/main_site/js/demo/datatables-demo.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_site/templates/main_site/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/templates/main_site/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_site/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_site/migrations/0002_auto_20201007_1954.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_site/migrations/0003_auto_20201007_1954.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_site/migrations/0004_auto_20201007_1956.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_site/migrations/0005_auto_20201007_1956.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_site/model/coggle.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/models/coggle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_site/model/miro.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/models/miro.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_site/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/models/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_site/views/views_services.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/views/views_services.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_site/views/views_tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/views/views_tasks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/analysis.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/readers.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/readers.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,11 +126,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/main_site/views" />
+      <recent name="$PROJECT_DIR$/main_site" />
       <recent name="$PROJECT_DIR$/main_site/models" />
+      <recent name="$PROJECT_DIR$/main_site/views" />
       <recent name="$PROJECT_DIR$/main_site/templates/main_site/actions/homeworks" />
       <recent name="$PROJECT_DIR$/main_site/templates/main_site/actions" />
-      <recent name="$PROJECT_DIR$/main_site/templates/main_site" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/modules" />
@@ -304,7 +315,7 @@
       <workItem from="1601845727451" duration="678000" />
       <workItem from="1601846514883" duration="30637000" />
       <workItem from="1602089537611" duration="20751000" />
-      <workItem from="1602174156674" duration="3281000" />
+      <workItem from="1602174156674" duration="24263000" />
     </task>
     <servers />
   </component>
@@ -355,34 +366,38 @@
       <screen x="64" y="27" width="1472" height="837" />
     </state>
     <state x="586" y="225" width="424" height="496" key="FileChooserDialogImpl/64.27.1472.837@64.27.1472.837" timestamp="1601813500423" />
-    <state width="1426" height="309" key="GridCell.Tab.0.bottom" timestamp="1602176363004">
+    <state width="1426" height="202" key="GridCell.Tab.0.bottom" timestamp="1602200899784">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
-    <state width="1426" height="309" key="GridCell.Tab.0.bottom/64.27.1472.837@64.27.1472.837" timestamp="1602176363004" />
-    <state width="1426" height="309" key="GridCell.Tab.0.center" timestamp="1602176362987">
+    <state width="1426" height="202" key="GridCell.Tab.0.bottom/64.27.1472.837@64.27.1472.837" timestamp="1602200899784" />
+    <state width="1426" height="202" key="GridCell.Tab.0.center" timestamp="1602200899782">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
-    <state width="1426" height="309" key="GridCell.Tab.0.center/64.27.1472.837@64.27.1472.837" timestamp="1602176362987" />
-    <state width="1426" height="309" key="GridCell.Tab.0.left" timestamp="1602176362986">
+    <state width="1426" height="202" key="GridCell.Tab.0.center/64.27.1472.837@64.27.1472.837" timestamp="1602200899782" />
+    <state width="1426" height="202" key="GridCell.Tab.0.left" timestamp="1602200899781">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
-    <state width="1426" height="309" key="GridCell.Tab.0.left/64.27.1472.837@64.27.1472.837" timestamp="1602176362986" />
-    <state width="1426" height="309" key="GridCell.Tab.0.right" timestamp="1602176363003">
+    <state width="1426" height="202" key="GridCell.Tab.0.left/64.27.1472.837@64.27.1472.837" timestamp="1602200899781" />
+    <state width="1426" height="202" key="GridCell.Tab.0.right" timestamp="1602200899783">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
-    <state width="1426" height="309" key="GridCell.Tab.0.right/64.27.1472.837@64.27.1472.837" timestamp="1602176363003" />
+    <state width="1426" height="202" key="GridCell.Tab.0.right/64.27.1472.837@64.27.1472.837" timestamp="1602200899783" />
     <state x="520" y="112" width="1016" height="742" key="SettingsEditor" timestamp="1599670195333">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
     <state x="520" y="112" width="1016" height="742" key="SettingsEditor/64.27.1472.837@64.27.1472.837" timestamp="1599670195333" />
-    <state x="584" y="356" width="432" height="182" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1602013246371">
+    <state x="529" y="171" width="540" height="524" key="StructurePopup" timestamp="1602190110343">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
-    <state x="584" y="356" width="432" height="182" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/64.27.1472.837@64.27.1472.837" timestamp="1602013246371" />
-    <state x="489" y="51" width="621" height="783" key="find.popup" timestamp="1602177445086">
+    <state x="529" y="171" width="540" height="524" key="StructurePopup/64.27.1472.837@64.27.1472.837" timestamp="1602190110343" />
+    <state x="584" y="351" width="432" height="182" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1602181727217">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
-    <state x="489" y="51" width="621" height="783" key="find.popup/64.27.1472.837@64.27.1472.837" timestamp="1602177445086" />
+    <state x="584" y="351" width="432" height="182" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/64.27.1472.837@64.27.1472.837" timestamp="1602181727217" />
+    <state x="489" y="51" width="621" height="783" key="find.popup" timestamp="1602198211795">
+      <screen x="64" y="27" width="1472" height="837" />
+    </state>
+    <state x="489" y="51" width="621" height="783" key="find.popup/64.27.1472.837@64.27.1472.837" timestamp="1602198211795" />
     <state x="634" y="231" width="327" height="441" key="refactoring.ChangeSignatureDialog" timestamp="1601405973901">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
@@ -391,15 +406,5 @@
       <screen x="64" y="27" width="1472" height="837" />
     </state>
     <state x="463" y="185" width="672" height="678" key="search.everywhere.popup/64.27.1472.837@64.27.1472.837" timestamp="1601993549356" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main_site/model/coggle.py</url>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

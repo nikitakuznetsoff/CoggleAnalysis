@@ -2,8 +2,7 @@ import json
 import requests
 from requests.auth import HTTPBasicAuth
 
-from main_site.models import UserData
-from main_site.model import coggle, miro
+from main_site.models import UserData, coggle, miro
 from main_site.views.views_tasks import task_add
 
 from django.shortcuts import render, redirect

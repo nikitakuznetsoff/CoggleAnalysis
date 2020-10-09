@@ -1,5 +1,5 @@
 # Чтение Имен учеников и ссылок
-def read_mindmap_ids(sheet, names_column, links_column, start_row):
+def read_mindmaps_info(sheet, names_column, links_column, start_row) -> dict:
     if names_column == '':
         names_column = "A"
     if links_column == '':
@@ -7,22 +7,21 @@ def read_mindmap_ids(sheet, names_column, links_column, start_row):
     if start_row == '':
         start_row = 1
 
-    arr = [[], []]
+    names, links = [], []
     names_column_index = ord(names_column) - 65
     links_column_index = ord(links_column) - 65
 
     for row in sheet.iter_rows(min_row=start_row):
         try:
             if row[names_column_index].value:
-                arr[0].append(row[names_column_index].value.strip())
-                arr[1].append(link_to_id(row[links_column_index].value.strip()))
+                names.append(row[names_column_index].value.strip())
+                links.append(link_to_id(row[links_column_index].value.strip()))
             else:
-                arr[0].append(None)
-                arr[1].append(None)
+                names.append(None)
+                links.append(None)
         except Exception as e:
             print("[SHEET ERROR]" + str(e))
-            return arr
-    return arr
+    return {'names': names, 'mindmaps_id': links}
 
 
 # Возврат ИДшника из ссылки
