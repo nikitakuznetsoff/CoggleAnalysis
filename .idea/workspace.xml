@@ -34,7 +34,7 @@
   <component name="ChangeListManager">
     <list default="true" id="165fd791-ffc8-4ce5-b9a9-e5ad2d057dbf" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_site/templates/main_site/actions/homeworks/homework.html" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/templates/main_site/actions/homeworks/homework.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_site/views/views_tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/views/views_tasks.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mind_maps_analysis/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/mind_maps_analysis/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -301,7 +301,7 @@
       <workItem from="1601845727451" duration="678000" />
       <workItem from="1601846514883" duration="30637000" />
       <workItem from="1602089537611" duration="20751000" />
-      <workItem from="1602174156674" duration="24970000" />
+      <workItem from="1602174156674" duration="26394000" />
     </task>
     <servers />
   </component>

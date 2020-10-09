@@ -23,8 +23,8 @@ def index(request):
 def task_add(request):
     user_data = UserData.objects.get(user=request.user)
     context = dict()
-    context['coggle_key'] = user_data.coggle_key is None
-    context['miro_key'] = user_data.miro_key is None
+    context['coggle_key'] = user_data.coggle_key == "Undefined"
+    context['miro_key'] = user_data.miro_key == "Undefined"
     return render(request, 'main_site/actions/add.html', context)
 
 
