@@ -31,11 +31,11 @@
                                 </tr>
                                 <tr>
                                     <th scope="row">Оценка структурного сходства</th>
-                                    <td>{{ homework.similarity }} %</td>
+                                    <td>{{ homework.similarity_score }} %</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Оценка сходства текстового содержания</th>
-                                    <td>{{ homework.plagiarism }} %</td>
+                                    <th scope="row">Оценка текстового содержания</th>
+                                    <td>{{ homework.text_score }} %</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -80,17 +80,17 @@
               </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col">
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Анализ текстового содержания</h6>
-                    </div>
-                    <div class="card-body">
-
-                    </div>
-                </div>
-            </div>
-        </div>
+{#        <div class="row">#}
+{#            <div class="col">#}
+{#                <div class="card shadow mb-4">#}
+{#                    <div class="card-header py-3">#}
+{#                        <h6 class="m-0 font-weight-bold text-primary">Анализ текстового содержания</h6>#}
+{#                    </div>#}
+{#                    <div class="card-body">#}
+{##}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
     </div>
 {% endblock %}

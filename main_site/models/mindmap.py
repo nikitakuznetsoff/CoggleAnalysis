@@ -6,9 +6,12 @@ class MindMap:
         self.name = name
         self.id = id
         self.service = service
-        self.similarity = 0
+        self.similarity_score = 0
+        self.text_score = 0
+        self.text_keys = []
         self.plagiarism = 0
         self.graph = None
+        self.text = None
 
     # Метод преобразования сырых данных в граф формата NetworkX
     def create_graph_view(self, data: dict):
@@ -74,6 +77,13 @@ class MindMap:
                 'max_height': 0, 'avg_node_text_len': 0,
                 'count_nodes': 0, 'count_first_layer_branches': 0
             }
+
+    def get_text(self) -> str:
+        text = ""
+        if self.graph is not None:
+            for node in list(self.graph.nodes):
+                text += self.graph.nodes[node]['text']
+        return text
 
     def calc_text_length(self) -> int:
         if self.graph is not None:

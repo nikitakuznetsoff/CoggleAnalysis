@@ -17,7 +17,7 @@
             <div class="row mb-3">
                 <div class="col text-center">Имя ученика</div>
                 <div class="col text-center">Оценка структурного сходства</div>
-                <div class="col text-center">Оценка сходства текстового содержания</div>
+                <div class="col text-center">Оценка текстового содержания</div>
             </div>
         {% for homework in task.homework_set.all %}
              <a href="{{ homework.pk }}" class="list-group-item list-group-item-action align-items-center">
@@ -26,46 +26,46 @@
                          {{ homework.name }}
                      </div>
                      <div class="col text-center">
-                         {% if homework.similarity >= 70 %}
+                         {% if homework.similarity_score >= 70 %}
                              <span class="badge badge-success">
-                                 {{ homework.similarity }} %
+                                 {{ homework.similarity_score }} %
                              </span>
                          {% endif %}
-                         {% if homework.similarity >= 50 and homework.similarity < 70 %}
+                         {% if homework.similarity_score >= 50 and homework.similarity_score < 70 %}
                              <span class="badge badge-secondary">
-                                 {{ homework.similarity }} %
+                                 {{ homework.similarity_score }} %
                              </span>
                          {% endif %}
-                         {% if homework.similarity >= 25 and homework.similarity < 50 %}
+                         {% if homework.similarity_score >= 25 and homework.similarity_score < 50 %}
                              <span class="badge badge-warning">
-                                 {{ homework.similarity }} %
+                                 {{ homework.similarity_score }} %
                              </span>
                          {% endif %}
-                         {% if homework.similarity < 25 %}
+                         {% if homework.similarity_score < 25 %}
                              <span class="badge badge-danger">
-                                 {{ homework.similarity }} %
+                                 {{ homework.similarity_score }} %
                              </span>
                          {% endif %}
                      </div>
                      <div class="col text-center">
-                         {% if homework.plagiarism >= 70 %}
+                         {% if homework.text_score >= 70 %}
                              <span class="badge badge-success">
-                                 {{ homework.plagiarism }} %
+                                 {{ homework.text_score }} %
                              </span>
                          {% endif %}
-                         {% if homework.plagiarism >= 50 and homework.plagiarism < 70 %}
+                         {% if homework.text_score >= 50 and homework.text_score < 70 %}
                              <span class="badge badge-secondary">
-                                 {{ homework.plagiarism }} %
+                                 {{ homework.text_score }} %
                              </span>
                          {% endif %}
-                         {% if homework.plagiarism >= 25 and homework.plagiarism < 50 %}
+                         {% if homework.text_score >= 25 and homework.text_score < 50 %}
                              <span class="badge badge-warning">
-                                 {{ homework.plagiarism }} %
+                                 {{ homework.text_score }} %
                              </span>
                          {% endif %}
-                         {% if homework.plagiarism < 25 %}
+                         {% if homework.text_score < 25 %}
                              <span class="badge badge-danger">
-                                 {{ homework.plagiarism }} %
+                                 {{ homework.text_score }} %
                              </span>
                          {% endif %}
                      </div>

@@ -34,8 +34,18 @@
   <component name="ChangeListManager">
     <list default="true" id="165fd791-ffc8-4ce5-b9a9-e5ad2d057dbf" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_site/models/algo.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_site/models/mindmap.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/models/mindmap.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_site/models/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/models/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_site/templates/main_site/actions/homeworks/homework.html" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/templates/main_site/actions/homeworks/homework.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_site/templates/main_site/actions/homeworks/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/templates/main_site/actions/homeworks/list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main_site/views/views_tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/views/views_tasks.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mind_maps_analysis/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/mind_maps_analysis/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/checks.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/checks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/graph_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/graph_functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/keys.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/text_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/text_search.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -301,7 +311,9 @@
       <workItem from="1601845727451" duration="678000" />
       <workItem from="1601846514883" duration="30637000" />
       <workItem from="1602089537611" duration="20751000" />
-      <workItem from="1602174156674" duration="26394000" />
+      <workItem from="1602174156674" duration="27975000" />
+      <workItem from="1602429080217" duration="5162000" />
+      <workItem from="1602519223444" duration="8778000" />
     </task>
     <servers />
   </component>
@@ -352,22 +364,22 @@
       <screen x="64" y="27" width="1472" height="837" />
     </state>
     <state x="586" y="225" width="424" height="496" key="FileChooserDialogImpl/64.27.1472.837@64.27.1472.837" timestamp="1601813500423" />
-    <state width="1426" height="202" key="GridCell.Tab.0.bottom" timestamp="1602200899784">
+    <state width="1426" height="202" key="GridCell.Tab.0.bottom" timestamp="1602604806493">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
-    <state width="1426" height="202" key="GridCell.Tab.0.bottom/64.27.1472.837@64.27.1472.837" timestamp="1602200899784" />
-    <state width="1426" height="202" key="GridCell.Tab.0.center" timestamp="1602200899782">
+    <state width="1426" height="202" key="GridCell.Tab.0.bottom/64.27.1472.837@64.27.1472.837" timestamp="1602604806493" />
+    <state width="1426" height="202" key="GridCell.Tab.0.center" timestamp="1602604806491">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
-    <state width="1426" height="202" key="GridCell.Tab.0.center/64.27.1472.837@64.27.1472.837" timestamp="1602200899782" />
-    <state width="1426" height="202" key="GridCell.Tab.0.left" timestamp="1602200899781">
+    <state width="1426" height="202" key="GridCell.Tab.0.center/64.27.1472.837@64.27.1472.837" timestamp="1602604806491" />
+    <state width="1426" height="202" key="GridCell.Tab.0.left" timestamp="1602604806490">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
-    <state width="1426" height="202" key="GridCell.Tab.0.left/64.27.1472.837@64.27.1472.837" timestamp="1602200899781" />
-    <state width="1426" height="202" key="GridCell.Tab.0.right" timestamp="1602200899783">
+    <state width="1426" height="202" key="GridCell.Tab.0.left/64.27.1472.837@64.27.1472.837" timestamp="1602604806490" />
+    <state width="1426" height="202" key="GridCell.Tab.0.right" timestamp="1602604806492">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
-    <state width="1426" height="202" key="GridCell.Tab.0.right/64.27.1472.837@64.27.1472.837" timestamp="1602200899783" />
+    <state width="1426" height="202" key="GridCell.Tab.0.right/64.27.1472.837@64.27.1472.837" timestamp="1602604806492" />
     <state x="520" y="112" width="1016" height="742" key="SettingsEditor" timestamp="1599670195333">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
@@ -380,10 +392,10 @@
       <screen x="64" y="27" width="1472" height="837" />
     </state>
     <state x="584" y="351" width="432" height="182" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/64.27.1472.837@64.27.1472.837" timestamp="1602181727217" />
-    <state x="489" y="51" width="621" height="783" key="find.popup" timestamp="1602198211795">
+    <state x="489" y="51" width="621" height="783" key="find.popup" timestamp="1602434660065">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
-    <state x="489" y="51" width="621" height="783" key="find.popup/64.27.1472.837@64.27.1472.837" timestamp="1602198211795" />
+    <state x="489" y="51" width="621" height="783" key="find.popup/64.27.1472.837@64.27.1472.837" timestamp="1602434660065" />
     <state x="634" y="231" width="327" height="441" key="refactoring.ChangeSignatureDialog" timestamp="1601405973901">
       <screen x="64" y="27" width="1472" height="837" />
     </state>

@@ -2,7 +2,8 @@ from main_site.models import UserData, Task, coggle, miro, MindMap
 from main_site.forms import TaskForm
 
 from openpyxl import load_workbook
-from modules import checks, readers, analysis, analysis_functions
+import json
+from modules import checks, readers, analysis, analysis_functions, algorithm
 
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
@@ -59,9 +60,6 @@ def task_add_confirm(request):
                 }
                 return render(request, 'main_site/actions/error.html', context)
 
-            # Создание массива ключевых значений
-            arr_keys = data['text_keys'].split(",")
-
             # Получение нужной таблицы из файла
             if data['table_name'] != '':
                 sheet = workbook[data['table_name']]
@@ -91,7 +89,6 @@ def task_add_confirm(request):
                     redirect_uri=coggle.REDIRECT_URI,
                     access_token=user_data.coggle_key
                 )
-
             elif data['service'] == "Miro":
                 web_service_object = miro.Miro(
                     app_name=miro.APP_NAME,
@@ -119,18 +116,36 @@ def task_add_confirm(request):
                 mindmap.create_graph_view(response)
                 mindmaps.append(mindmap)
 
+            correct_mindmap = None
+            if data['correct_work'] != '':
+                correct_mindmap = MindMap(
+                    name="correct work",
+                    id=readers.link_to_id(data['correct_work']),
+                    service=str(web_service_object)
+                )
+                correct_mindmap.create_graph_view()
 
+            if correct_mindmap is not None:
+                for mindmap in mindmaps:
+                    if mindmap.id == correct_mindmap.id:
+                        mindmap.similarity_score = 1
+                    mindmap.similarity_score = algorithm.max_common_substree_rooted(correct_mindmap, mindmap)
 
-            # arr_with_coef = analysis.mindmap_analysis(
-            #     identificators=arr[1],
-            #     correct_mindmap_id=readers.link_to_id(data['correct_work']),
-            #     service=web_service_object
-            # )
+            # Создание массива ключевых значений
+            key_values = data['text_keys'].split(",")
+            for i in range(len(key_values)):
+                key_values[i] = key_values[i].strip()
 
-            # print("Coefs: " + str(arr_with_coef))
-
-            # Массив текстов каждой интеллект карты
-            # arr_text = analysis.take_text(arr[1])
+            # Оценка текстового содержания
+            for mindmap in mindmaps:
+                text = mindmap.get_text()
+                mindmap.text = text
+                text_score = 0
+                for v in key_values:
+                    if v in text:
+                        text_score += 1
+                text_score /= 1. * len(key_values)
+                mindmap.text_score = text_score
 
             # sim_arr = []
             # # Массив с вычисленными сходствами текстовых составляющих
@@ -138,36 +153,6 @@ def task_add_confirm(request):
             #     sim_arr = text_search.initialization(arr_keys, arr_text)
             # else:
             #     sim_arr = [0] * len(arr_keys)
-            #
-            # # Создание объекта домашнего задания для текущего пользователя
-            # curr_data = UserData.objects.get(user=request.user)
-            # curr_task = curr_data.task_set.create(title=data['title'], about=data['about'])
-            # print("[CREATING TASK] TITLE: " + data['title'] + "; ABOUT: " + data['about'])
-            #
-            # # Создание работ
-            # for i in range(0, len(arr[0])):
-            #     # Проверка на считывание лишней информации
-            #     if arr[0][i] is None:
-            #         break
-            #     if data['correct_work'] == '':
-            #         coef = round(arr_with_coef[1][i] * 100)
-            #     else:
-            #         coef = round(arr_with_coef[i] * 100)
-            #
-            #     if len(sim_arr) > 0:
-            #         sim = round(sim_arr[i] * 100)
-            #     else:
-            #         sim = -1
-            #     print("[ADDING HW] NAME: " + arr[0][i])
-            #
-            #     metrics = analysis_functions.calculate_metrics()
-            #     curr_task.homework_set.create(
-            #         name=arr[0][i],
-            #         link=arr[1][i],
-            #         similarity=coef,
-            #         plagiarism=sim,
-            #
-            #     )
 
             # Создание объекта задания для текущего пользователя
             curr_task = user_data.task_set.create(title=data['title'], about=data['about'])
@@ -176,12 +161,15 @@ def task_add_confirm(request):
             # Создание работ студентов
             for mindmap in mindmaps:
                 metrics = mindmap.get_metrics()
+                keys = json.dumps(mindmap.text_keys)
                 curr_task.homework_set.create(
                     name=mindmap.name,
                     link=mindmap.id,
                     service=mindmap.service,
                     # Metrics
-                    similarity=mindmap.similarity,
+                    similarity_score=mindmap.similarity_score * 100,
+                    text_score=mindmap.text_score,
+                    text_keys=keys,
                     plagiarism=mindmap.plagiarism,
                     count_nodes=metrics['count_nodes'],
                     count_first_layer_branches=metrics['count_first_layer_branches'],

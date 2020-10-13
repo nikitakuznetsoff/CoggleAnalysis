@@ -1,5 +1,6 @@
 import apsw
 
+
 def initialization(arr_keys, arr_text):
 # def initialization():
 

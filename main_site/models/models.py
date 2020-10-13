@@ -27,13 +27,16 @@ class Homework(models.Model):
     service = models.CharField(max_length=30, null=True)
 
     # Metrics
-    similarity = models.IntegerField(default=0)
+    similarity_score = models.IntegerField(default=0)
+    text_score = models.IntegerField(default=0)
+    text_keys = models.CharField(null=True)
     plagiarism = models.IntegerField(default=0)
 
     count_nodes = models.IntegerField(default=0)
     count_first_layer_branches = models.IntegerField(default=0)
     average_node_text = models.IntegerField(default=0)
     max_height = models.IntegerField(default=0)
+    text_length = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name

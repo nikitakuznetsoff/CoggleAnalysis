@@ -1,8 +1,4 @@
 import networkx as nx
-from openpyxl.styles import Font, Color
-from openpyxl.styles import colors
-from openpyxl import Workbook
-import openpyxl
 
 
 # Группа методов для преобразования данных о вершинах в граф networkx
@@ -13,7 +9,6 @@ def transform_into_graph(node):
     for obj in node:
         passed_nodes.append(obj['_id'])
         graph.add_node(obj['_id'], text=obj['text'], offset=obj['offset'])
-        #graph.add_node(obj['_id'])
         transform_into_graph_rec(obj, passed_nodes, graph)
     return graph
 
@@ -90,5 +85,4 @@ def get_text(graph):
             arr += " " + str[0:index]
         else:
             arr += " " + str
-
     return arr
