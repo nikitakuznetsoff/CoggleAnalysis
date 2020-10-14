@@ -1,0 +1,48 @@
+{% extends "main_site/actions/homeworks/base_homework.html" %}
+
+{% block site_title %}Текущее задание{% endblock %}
+
+{% block page_title %}Информация о заданиии{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'index' %}">Главная</a></li>
+            <li class="breadcrumb-item active">Задание</li>
+            <li class="breadcrumb-item active" aria-current="page">Описание</li>
+        </ol>
+
+        <div class="row">
+            <div class="col">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                      <h6 class="m-0 font-weight-bold text-primary">Информация</h6>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Название</th>
+                                    <td>{{ task.title }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Описание</th>
+                                    <td>{{ task.about }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Ключи</th>
+                                    <td>
+                                        {% for key in keys %}
+                                            {{ key }}
+                                        {% endfor %}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

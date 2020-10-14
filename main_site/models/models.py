@@ -14,6 +14,8 @@ class UserData(models.Model):
 class Task(models.Model):
     title = models.CharField(max_length=200, null=True)
     about = models.CharField(max_length=400, null=True)
+    keys = models.CharField(max_length=1000, null=True)
+
     userData = models.ForeignKey(UserData, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -29,7 +31,7 @@ class Homework(models.Model):
     # Metrics
     similarity_score = models.IntegerField(default=0)
     text_score = models.IntegerField(default=0)
-    text_keys = models.CharField(null=True)
+    text_keys = models.CharField(max_length=10000, null=True)
     plagiarism = models.IntegerField(default=0)
 
     count_nodes = models.IntegerField(default=0)

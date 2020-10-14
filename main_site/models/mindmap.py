@@ -54,11 +54,11 @@ class MindMap:
             for obj in data['data']:
                 if obj['type'] == 'text':
                     text = obj['text'].replace("<p>", " ").replace("</p>", " ")
-                    self.graph.add_node(obj['id'], text=text)
+                    graph.add_node(obj['id'], text=text)
                 elif obj['type'] == 'line':
                     parent = obj['startWidget']['id']
                     child = obj['endWidget']['id']
-                    self.graph.add_edge(parent, child)
+                    graph.add_edge(parent, child)
             self.graph = graph
         else:
             raise ValueError("Unexpected service name")

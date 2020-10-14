@@ -3,7 +3,7 @@ from main_site.forms import TaskForm
 
 from openpyxl import load_workbook
 import json
-from modules import checks, readers, analysis, analysis_functions, algorithm
+from modules import checks, readers, algorithm
 
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
@@ -11,13 +11,26 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='/accounts/login/')
 def index(request):
-    # coggle.coggle_client.authorization()
     try:
         user_data = UserData.objects.get(user=request.user)
     except UserData.DoesNotExist:
         user_data = ''
     context = {'userData': user_data}
     return render(request, 'main_site/index.html', context)
+
+
+@login_required(login_url='/accounts/login/')
+def info_task_view(request, task_id):
+    try:
+        task = Task.objects.get(pk=task_id)
+        keys = ''
+        if len(task.keys) > 0:
+            keys = json.loads(task.keys)
+    except Task.DoesNotExist:
+        task = ''
+        keys = ''
+    context = {'task': task, 'keys': keys, 'task_id': task_id}
+    return render(request, 'main_site/actions/homeworks/info.html', context)
 
 
 @login_required(login_url='/accounts/login/')
@@ -112,6 +125,7 @@ def task_add_confirm(request):
                     id=mindmaps_table_info['mindmaps_id'][i],
                     service=str(web_service_object)
                 )
+                print("MINDMAP: " + mindmap.name + "; ID: " + mindmap.id)
                 response = web_service_object.nodes(mindmap.id)
                 mindmap.create_graph_view(response)
                 mindmaps.append(mindmap)
@@ -120,16 +134,21 @@ def task_add_confirm(request):
             if data['correct_work'] != '':
                 correct_mindmap = MindMap(
                     name="correct work",
-                    id=readers.link_to_id(data['correct_work']),
+                    id=readers.link_to_id(data['correct_work'].strip()),
                     service=str(web_service_object)
                 )
-                correct_mindmap.create_graph_view()
+                response = web_service_object.nodes(correct_mindmap.id)
+                correct_mindmap.create_graph_view(response)
+            print("CORRECT MINDMAP ID: " + correct_mindmap.id)
 
             if correct_mindmap is not None:
                 for mindmap in mindmaps:
                     if mindmap.id == correct_mindmap.id:
                         mindmap.similarity_score = 1
-                    mindmap.similarity_score = algorithm.max_common_substree_rooted(correct_mindmap, mindmap)
+                    else:
+                        mindmap.similarity_score = algorithm.max_common_substree_rooted(
+                            correct_mindmap.graph, mindmap.graph
+                    )
 
             # Создание массива ключевых значений
             key_values = data['text_keys'].split(",")
@@ -155,7 +174,11 @@ def task_add_confirm(request):
             #     sim_arr = [0] * len(arr_keys)
 
             # Создание объекта задания для текущего пользователя
-            curr_task = user_data.task_set.create(title=data['title'], about=data['about'])
+            curr_task = user_data.task_set.create(
+                title=data['title'],
+                about=data['about'],
+                keys=json.dumps(key_values)
+            )
             print("[CREATING TASK] TITLE: " + data['title'] + "; ABOUT: " + data['about'])
 
             # Создание работ студентов

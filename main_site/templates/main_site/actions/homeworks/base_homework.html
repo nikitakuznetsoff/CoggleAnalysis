@@ -13,6 +13,7 @@
         <div id="collapseCurrentTask" class="collapse" aria-labelledby="headingTokens" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Операции:</h6>
+                <a class="collapse-item" href="{% url 'info_task' task_id %}">Информация</a>
                 <a class="collapse-item" href="{% url 'change_task' task_id %}">Изменить</a>
                 <a class="collapse-item" href="{% url 'delete_task' task_id %}">Удалить</a>
             </div>

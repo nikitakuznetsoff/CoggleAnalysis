@@ -1,6 +1,7 @@
 import requests
-import webbrowser
 import json
+from urllib.parse import urlencode
+from django.shortcuts import redirect
 
 
 # Класс для основных операций с API
@@ -20,21 +21,17 @@ class Miro:
             'client_id': self.client_id,
             'redirect_uri': self.redirect_uri
         }
-        resp_auth = requests.get(
-            url=self.url_base + 'oauth/authorize/',
-            params=params
-        )
-        webbrowser.open_new_tab(resp_auth.url)
+        return redirect(self.url_base + 'oauth/authorize?' + urlencode(params))
 
     def nodes(self, id_diagram):
         params = {'access_token': self.access_token}
         url_diagram = 'https://api.miro.com/v1/boards/'
+
         nodes_info = requests.get(
-            url=self.url_base + url_diagram + id_diagram + "/widgets/",
+            url=url_diagram + id_diagram + "/widgets/",
             params=params
         )
         nodes = json.loads(nodes_info.text)
-        print(nodes)
         return nodes
 
     def __str__(self):
@@ -44,5 +41,5 @@ class Miro:
 APP_NAME = "cognitive-maps-parser"
 CLIENT_ID = "3074457350265036612"
 CLIENT_SECRET = "cL72NzOBDNUhOhqZqbVOOZmM9zfmeHye"
-REDIRECT_URI = "http://127.0.0.1:8000:8000/miro"
+REDIRECT_URI = "http://localhost:8000/miro"
 URL_BASE = "https://miro.com/"

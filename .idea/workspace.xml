@@ -33,19 +33,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="165fd791-ffc8-4ce5-b9a9-e5ad2d057dbf" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/main_site/migrations/0003_auto_20201014_1723.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main_site/migrations/0004_task_keys.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main_site/templates/main_site/actions/homeworks/info.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_site/models/algo.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_site/models/coggle.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/models/coggle.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main_site/models/mindmap.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/models/mindmap.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_site/models/miro.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/models/miro.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main_site/models/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/models/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_site/templates/main_site/actions/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/templates/main_site/actions/add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_site/templates/main_site/actions/homeworks/base_homework.html" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/templates/main_site/actions/homeworks/base_homework.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main_site/templates/main_site/actions/homeworks/homework.html" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/templates/main_site/actions/homeworks/homework.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_site/templates/main_site/actions/homeworks/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/templates/main_site/actions/homeworks/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_site/templates/main_site/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/templates/main_site/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_site/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_site/views/views_services.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/views/views_services.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main_site/views/views_tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_site/views/views_tasks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mind_maps_analysis/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/mind_maps_analysis/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/checks.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/checks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/graph_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/graph_functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/keys.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/text_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/text_search.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/algorithm.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,8 +68,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -121,19 +124,19 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/main_site" />
-      <recent name="$PROJECT_DIR$/main_site/models" />
-      <recent name="$PROJECT_DIR$/main_site/views" />
-      <recent name="$PROJECT_DIR$/main_site/templates/main_site/actions/homeworks" />
-      <recent name="$PROJECT_DIR$/main_site/templates/main_site/actions" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/modules" />
       <recent name="$PROJECT_DIR$/polls/templates/registration" />
       <recent name="$PROJECT_DIR$/polls/static/polls" />
       <recent name="$PROJECT_DIR$/polls" />
       <recent name="$PROJECT_DIR$/polls/static" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/main_site/templates/main_site/actions/homeworks" />
+      <recent name="$PROJECT_DIR$/main_site" />
+      <recent name="$PROJECT_DIR$/main_site/models" />
+      <recent name="$PROJECT_DIR$/main_site/views" />
+      <recent name="$PROJECT_DIR$/main_site/templates/main_site/actions" />
     </key>
   </component>
   <component name="RunManager" selected="Django Server.mind_maps_analysis">
@@ -313,7 +316,8 @@
       <workItem from="1602089537611" duration="20751000" />
       <workItem from="1602174156674" duration="27975000" />
       <workItem from="1602429080217" duration="5162000" />
-      <workItem from="1602519223444" duration="8778000" />
+      <workItem from="1602519223444" duration="18053000" />
+      <workItem from="1602706913833" duration="3205000" />
     </task>
     <servers />
   </component>
@@ -364,22 +368,22 @@
       <screen x="64" y="27" width="1472" height="837" />
     </state>
     <state x="586" y="225" width="424" height="496" key="FileChooserDialogImpl/64.27.1472.837@64.27.1472.837" timestamp="1601813500423" />
-    <state width="1426" height="202" key="GridCell.Tab.0.bottom" timestamp="1602604806493">
+    <state width="1426" height="292" key="GridCell.Tab.0.bottom" timestamp="1602708526000">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
-    <state width="1426" height="202" key="GridCell.Tab.0.bottom/64.27.1472.837@64.27.1472.837" timestamp="1602604806493" />
-    <state width="1426" height="202" key="GridCell.Tab.0.center" timestamp="1602604806491">
+    <state width="1426" height="292" key="GridCell.Tab.0.bottom/64.27.1472.837@64.27.1472.837" timestamp="1602708526000" />
+    <state width="1426" height="292" key="GridCell.Tab.0.center" timestamp="1602708525998">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
-    <state width="1426" height="202" key="GridCell.Tab.0.center/64.27.1472.837@64.27.1472.837" timestamp="1602604806491" />
-    <state width="1426" height="202" key="GridCell.Tab.0.left" timestamp="1602604806490">
+    <state width="1426" height="292" key="GridCell.Tab.0.center/64.27.1472.837@64.27.1472.837" timestamp="1602708525998" />
+    <state width="1426" height="292" key="GridCell.Tab.0.left" timestamp="1602708525997">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
-    <state width="1426" height="202" key="GridCell.Tab.0.left/64.27.1472.837@64.27.1472.837" timestamp="1602604806490" />
-    <state width="1426" height="202" key="GridCell.Tab.0.right" timestamp="1602604806492">
+    <state width="1426" height="292" key="GridCell.Tab.0.left/64.27.1472.837@64.27.1472.837" timestamp="1602708525997" />
+    <state width="1426" height="292" key="GridCell.Tab.0.right" timestamp="1602708525999">
       <screen x="64" y="27" width="1472" height="837" />
     </state>
-    <state width="1426" height="202" key="GridCell.Tab.0.right/64.27.1472.837@64.27.1472.837" timestamp="1602604806492" />
+    <state width="1426" height="292" key="GridCell.Tab.0.right/64.27.1472.837@64.27.1472.837" timestamp="1602708525999" />
     <state x="520" y="112" width="1016" height="742" key="SettingsEditor" timestamp="1599670195333">
       <screen x="64" y="27" width="1472" height="837" />
     </state>

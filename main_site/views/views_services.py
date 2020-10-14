@@ -17,8 +17,7 @@ def coggle_auth_view(request):
         client_secret=coggle.CLIENT_SECRET,
         redirect_uri=coggle.REDIRECT_URI
     )
-    obj.authorization()
-    return redirect(task_add)
+    return obj.authorization()
 
 
 @login_required(login_url='/accounts/login/')
@@ -62,8 +61,7 @@ def miro_auth_view(request):
         client_secret=miro.CLIENT_SECRET,
         redirect_uri=miro.REDIRECT_URI
     )
-    obj.authorization()
-    return redirect(task_add)
+    return obj.authorization()
 
 
 @login_required(login_url='/accounts/login/')
@@ -81,12 +79,14 @@ def miro_get_code_view(request):
         params = {
             'code': code,
             'grant_type': "authorization_code",
-            'redirect_uri': miro.REDIRECT_URI
+            'redirect_uri': miro.REDIRECT_URI,
+            'client_id': miro.CLIENT_ID,
+            'client_secret': miro.CLIENT_SECRET
         }
         response = requests.post(
-            miro.URL_BASE + "token",
+            'https://api.miro.com/v1/oauth/token',
             auth=HTTPBasicAuth(miro.CLIENT_ID, miro.CLIENT_SECRET),
-            json=params
+            params=params
         )
         information_auth = json.loads(response.text)
         user_data = UserData.objects.get(user=request.user)

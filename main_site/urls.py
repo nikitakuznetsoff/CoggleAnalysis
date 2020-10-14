@@ -11,6 +11,8 @@ urlpatterns = [
     path('miro/', views.miro_get_code_view, name='miro_get_code'),
     path('miro/auth', views.miro_auth_view, name='miro_auth'),
 
+    path('<int:task_id>/info', views.info_task_view, name='info_task'),
+
     path('<int:task_id>/', views.homeworks, name='homeworks'),
     path('<int:task_id>/<int:homework_id>', views.homework, name='homework'),
     path('<int:task_id>/add', views.homework_add, name='homework_add'),

@@ -1,7 +1,7 @@
 import requests
 import json
-import webbrowser
-
+from urllib.parse import urlencode
+from django.shortcuts import redirect
 
 # Класс для основных операций с API
 class Coggle:
@@ -21,18 +21,14 @@ class Coggle:
             'client_id': self.client_id,
             'redirect_uri': self.redirect_uri
         }
-        resp_auth = requests.get(
-            url=self.url_base + 'dialog/authorize/',
-            params=params
-        )
-        webbrowser.open_new_tab(resp_auth.url)
+        return redirect(self.url_base + 'dialog/authorize?' + urlencode(params))
 
     # Получение информации о всей диаграмме
     def diagram(self, id_diagram):
         params = {"access_token": self.access_token}
         url_diagram = "api/1/diagrams/"
         diagram_info = requests.get(
-            url=self.url_base + url_diagram + id_diagram,
+            self.url_base + url_diagram + id_diagram,
             params=params
         )
         diagram = json.loads(diagram_info.text)
